@@ -1,2 +1,2 @@
 # YGDA-Oct_GameJam
-for ygda in tj
+This is a special gameJam hosted by YGDA in TJ.
