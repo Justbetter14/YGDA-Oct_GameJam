@@ -2,5 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dde8gl8mmyrll" path="res://main/rick.webp" id="1_trlsi"]
 
-[node name="woohoo" type="Sprite2D"]
+[node name="woohoo" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_trlsi")
