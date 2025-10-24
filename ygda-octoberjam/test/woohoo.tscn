@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://1juau3b3ywmx"]
 
-[ext_resource type="Texture2D" uid="uid://dde8gl8mmyrll" path="res://main/rick.webp" id="1_trlsi"]
+[ext_resource type="Texture2D" uid="uid://dde8gl8mmyrll" path="res://test/rick.webp" id="1_trlsi"]
 
 [node name="woohoo" type="CharacterBody2D"]
 
