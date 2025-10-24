@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED: int = 50
+const SPEED: int = 200
 # const JUMP_POW: int = -250
 var x_direction: int = 0
 var y_direction: int = 0
