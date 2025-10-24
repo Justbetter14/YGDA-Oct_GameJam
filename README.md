@@ -1,2 +1,3 @@
 # YGDA-Oct_GameJam
-This is a special Game Jam hosted by YGDA in TJ.
+Theme of the Game Jam is Transformation
+This is for YGDA Club in TJHSST.
