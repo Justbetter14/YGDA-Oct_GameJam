@@ -17,4 +17,5 @@ drag_right_margin = 0.75
 drag_bottom_margin = 0.75
 
 [node name="Box" parent="." instance=ExtResource("3_sugp2")]
-position = Vector2(729, 153)
+position = Vector2(244, 142)
+gravity_scale = 0.0
