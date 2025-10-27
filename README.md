@@ -1,3 +1,6 @@
 # YGDA-Oct_GameJam
-Theme of the Game Jam is Transformation
-This is for YGDA Club in TJHSST.
+## Description
+This Game was made by members of YGDA in 2025. 
+
+## Theme
+The theme of the game jam is Transformation.
