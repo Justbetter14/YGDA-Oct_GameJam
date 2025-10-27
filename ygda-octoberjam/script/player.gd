@@ -3,8 +3,8 @@ extends CharacterBody2D
 const SPEED: int = 200
 const JUMP_POW: int = -250
 var x_direction: int = 0
-var max_health: int = 50
-var currHealth: int = 50
+var max_health: int = 100
+var currHealth: int = 100
 
 signal death
 

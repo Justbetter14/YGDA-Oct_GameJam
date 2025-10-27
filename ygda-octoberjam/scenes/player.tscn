@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3712vlem8e0b"]
+[gd_scene load_steps=4 format=3 uid="uid://d3712vlem8e0b"]
 
-[ext_resource type="Texture2D" uid="uid://0tfqaln2w7cl" path="res://icon.svg" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://dde8gl8mmyrll" path="res://test/rick.webp" id="1_3vyb7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(131, 131)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vyb7"]
+bg_color = Color(0, 1, 0, 1)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
@@ -13,11 +16,13 @@ position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.00001, -3.09944e-06)
+scale = Vector2(0.107383, 0.206452)
 texture = ExtResource("1_3vyb7")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -65.0
-offset_top = -103.0
-offset_right = 68.0
-offset_bottom = -76.0
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_3vyb7")
 show_percentage = false
