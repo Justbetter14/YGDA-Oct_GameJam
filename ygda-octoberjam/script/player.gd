@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED: int = 200
-const JUMP_POW: int = -250
+const JUMP_POW: int = -550
 var x_direction: int = 0
 var max_health: int = 100
 var currHealth: int = 100

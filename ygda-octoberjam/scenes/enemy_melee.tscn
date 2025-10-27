@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://do6q0l3lyweuk"]
+
+[ext_resource type="Script" uid="uid://dpbetmb1bv5sj" path="res://script/enemy_melee.gd" id="1_yws7p"]
+[ext_resource type="Texture2D" uid="uid://dgbj0phv5ppj1" path="res://pixil-frame-1.png" id="2_qcgh8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcgh8"]
+radius = 56.0
+height = 146.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qcgh8"]
+radius = 212.72
+
+[node name="EnemyMelee" type="CharacterBody2D"]
+script = ExtResource("1_yws7p")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." groups=["enemy"]]
+position = Vector2(50, 63)
+shape = SubResource("CapsuleShape2D_qcgh8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(64, 71)
+texture = ExtResource("2_qcgh8")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(50, 61)
+
+[node name="Attack Range" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qcgh8")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
