@@ -3,12 +3,21 @@ extends CharacterBody2D
 const SPEED: int = 200
 const JUMP_POW: int = -250
 var x_direction: int = 0
-var y_direction: int = 0
+var max_health: int = 50
+var currHealth: int = 50
+
+signal death
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$HealthBar.max_value = max_health
+	health_Update()
 
+func health_Update() -> void:
+	if currHealth == 0:
+		die()
+	else:
+		$HealthBar.value = currHealth
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -28,3 +37,11 @@ func _physics_process(delta: float) -> void:
 	velocity.x = x_direction * SPEED
 	
 	move_and_slide()
+
+func die():
+	death.emit()
+	queue_free()
+
+func dmg(num: int):
+	currHealth -= num
+	health_Update()
