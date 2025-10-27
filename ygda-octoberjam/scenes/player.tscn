@@ -9,7 +9,7 @@ size = Vector2(131, 131)
 bg_color = Color(0, 1, 0, 1)
 corner_detail = 1
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
