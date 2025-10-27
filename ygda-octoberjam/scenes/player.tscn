@@ -7,6 +7,7 @@ size = Vector2(131, 131)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vyb7"]
 bg_color = Color(0, 1, 0, 1)
+corner_detail = 1
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
@@ -23,6 +24,10 @@ texture = ExtResource("1_3vyb7")
 [node name="HealthBar" type="ProgressBar" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
+offset_left = -62.0
+offset_top = -84.0
+offset_right = 64.0
+offset_bottom = -74.0
 grow_horizontal = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_3vyb7")
 show_percentage = false
