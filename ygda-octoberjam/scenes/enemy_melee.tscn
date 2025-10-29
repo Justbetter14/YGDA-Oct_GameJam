@@ -8,7 +8,7 @@ radius = 56.0
 height = 146.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qcgh8"]
-radius = 212.72
+radius = 123.016
 
 [node name="EnemyMelee" type="CharacterBody2D"]
 script = ExtResource("1_yws7p")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=4 uid="uid://cagirvs1kuwi7"]
+[gd_scene load_steps=9 format=4 uid="uid://cagirvs1kuwi7"]
 
 [ext_resource type="PackedScene" uid="uid://d3712vlem8e0b" path="res://scenes/player.tscn" id="1_0wfyh"]
-[ext_resource type="Script" uid="uid://dflmp7ykxx0ki" path="res://script/player.gd" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://crvd8lb5kn7h2" path="res://scenes/box.tscn" id="3_sugp2"]
 [ext_resource type="Texture2D" uid="uid://0tfqaln2w7cl" path="res://icon.svg" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://sbp33s7p500q" path="res://script/void.gd" id="5_tbgi4"]
@@ -148,7 +147,6 @@ distance = -536.0
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." groups=["enemy"] instance=ExtResource("1_0wfyh")]
-script = ExtResource("2_sugp2")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
