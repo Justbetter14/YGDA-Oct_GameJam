@@ -77,7 +77,6 @@ func dmg(num: int):
 	currHealth -= num
 	health_Update()
 
-
 #dash stuff
 func _on_dashCooldown_timeout() -> void:
 	dashCD = false

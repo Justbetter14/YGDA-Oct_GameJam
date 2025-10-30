@@ -1,8 +1,13 @@
 [gd_scene load_steps=15 format=3 uid="uid://d3712vlem8e0b"]
 
+<<<<<<< HEAD:ygda-octoberjam/player/player.tscn
+[ext_resource type="Texture2D" uid="uid://dde8gl8mmyrll" path="res://test/rick.webp" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://dflmp7ykxx0ki" path="res://player/player.gd" id="1_g2els"]
+=======
 [ext_resource type="Script" uid="uid://dflmp7ykxx0ki" path="res://script/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cjblhs6bjtivi" path="res://assets/player_idle.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://mbq4qgwf4l6u" path="res://assets/player_run.png" id="3_qhqgy"]
+>>>>>>> cd8c5936d3558fd97923824b39970f5f3bb8202d:ygda-octoberjam/scenes/player.tscn
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
 radius = 37.5
