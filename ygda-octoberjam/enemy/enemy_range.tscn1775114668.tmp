@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dct5fa6cpctsu"]
+
+[ext_resource type="Texture2D" uid="uid://dgbj0phv5ppj1" path="res://pixil-frame-1.png" id="1_773n7"]
+[ext_resource type="Script" uid="uid://d3aob3d6rqdfp" path="res://enemy/enemy_range.gd" id="1_njlcv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njlcv"]
+radius = 56.0
+height = 144.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_773n7"]
+radius = 407.593
+
+[node name="EnemyRange" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_njlcv")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_njlcv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(14, 9)
+texture = ExtResource("1_773n7")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(14, 9)
+
+[node name="Attack Range" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-15, -9)
+shape = SubResource("CircleShape2D_773n7")
+
+[node name="Bullet Cooldown" type="Timer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 67)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Bullet Cooldown" to="." method="_on_bullet_cooldown_timeout"]

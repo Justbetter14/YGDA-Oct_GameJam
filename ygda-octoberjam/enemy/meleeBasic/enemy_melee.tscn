@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://do6q0l3lyweuk"]
 
-[ext_resource type="Script" uid="uid://dpbetmb1bv5sj" path="res://script/enemy_melee.gd" id="1_yws7p"]
+[ext_resource type="Script" uid="uid://dpbetmb1bv5sj" path="res://enemy/meleeBasic/enemy_melee.gd" id="1_yws7p"]
 [ext_resource type="Texture2D" uid="uid://dgbj0phv5ppj1" path="res://pixil-frame-1.png" id="2_qcgh8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcgh8"]
