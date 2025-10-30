@@ -42,10 +42,13 @@ func _physics_process(delta: float) -> void:
 	if not dashing:
 		if Input.is_action_pressed("Left"):
 			x_direction = -1
+			$Sprite2D.play("walk")
 		elif Input.is_action_pressed("Right"):
 			x_direction = 1
+			$Sprite2D.play("walk")
 		else:
 			x_direction = 0
+			$Sprite2D.play("idle")
 	
 	
 	#dash/attack
