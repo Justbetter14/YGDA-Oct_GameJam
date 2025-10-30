@@ -1,122 +1,32 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3712vlem8e0b"]
+[gd_scene load_steps=5 format=3 uid="uid://cjlcrnnsc4lag"]
 
-<<<<<<< HEAD:ygda-octoberjam/player/player.tscn
-[ext_resource type="Texture2D" uid="uid://dde8gl8mmyrll" path="res://test/rick.webp" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://dflmp7ykxx0ki" path="res://player/player.gd" id="1_g2els"]
-=======
-[ext_resource type="Script" uid="uid://dflmp7ykxx0ki" path="res://script/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://cjblhs6bjtivi" path="res://assets/player_idle.png" id="2_g2els"]
-[ext_resource type="Texture2D" uid="uid://mbq4qgwf4l6u" path="res://assets/player_run.png" id="3_qhqgy"]
->>>>>>> cd8c5936d3558fd97923824b39970f5f3bb8202d:ygda-octoberjam/scenes/player.tscn
+[ext_resource type="Script" uid="uid://dflmp7ykxx0ki" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Texture2D" uid="uid://cjblhs6bjtivi" path="res://assets/player_idle.png" id="2_g1dw6"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
-radius = 37.5
-height = 127.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yw30f"]
+size = Vector2(20, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
-atlas = ExtResource("2_g2els")
-region = Rect2(0, 0, 16, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
-atlas = ExtResource("2_g2els")
-region = Rect2(16, 0, 16, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
-atlas = ExtResource("3_qhqgy")
-region = Rect2(0, 0, 24, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
-atlas = ExtResource("3_qhqgy")
-region = Rect2(24, 0, 24, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
-atlas = ExtResource("3_qhqgy")
-region = Rect2(48, 0, 24, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
-atlas = ExtResource("3_qhqgy")
-region = Rect2(0, 28, 24, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
-atlas = ExtResource("3_qhqgy")
-region = Rect2(24, 28, 24, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
-atlas = ExtResource("3_qhqgy")
-region = Rect2(48, 28, 24, 28)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dqkch")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qlg0r")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tuyoq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fjrip")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_smehm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ur7pv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y4r1p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d2wvv")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 8.0
-}]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vyb7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkbax"]
 bg_color = Color(0, 1, 0, 1)
-corner_detail = 1
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 3
-script = ExtResource("1_g2els")
+scale = Vector2(2.92, 1.96)
+script = ExtResource("1_rkbax")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_g1dw6")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 28)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0.5)
-shape = SubResource("CapsuleShape2D_qhqgy")
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(4.234, 4.5)
-sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"walk"
-frame_progress = 0.990974
-metadata/_edit_lock_ = true
+shape = SubResource("RectangleShape2D_yw30f")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = -62.0
-offset_top = -84.0
-offset_right = 64.0
-offset_bottom = -57.0
-grow_horizontal = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_3vyb7")
-metadata/_edit_lock_ = true
+offset_left = -17.0
+offset_top = -28.0
+offset_right = 15.0
+offset_bottom = -21.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_rkbax")
+show_percentage = false
 
-[node name="dashCooldown" type="Timer" parent="."]
-wait_time = 0.5
-
-[node name="dashtimer" type="Timer" parent="."]
-wait_time = 0.2
-
-[connection signal="timeout" from="dashCooldown" to="." method="_on_dashCooldown_timeout"]
-[connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]
+[node name="Timer" type="Timer" parent="."]
