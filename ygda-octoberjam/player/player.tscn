@@ -3,15 +3,16 @@
 [ext_resource type="Script" uid="uid://dflmp7ykxx0ki" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://cjblhs6bjtivi" path="res://assets/player_idle.png" id="2_g1dw6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yw30f"]
-size = Vector2(20, 32)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
+radius = 6.84931
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkbax"]
 bg_color = Color(0, 1, 0, 1)
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("healthbar") groups=["player"]]
 scale = Vector2(2.92, 1.96)
 script = ExtResource("1_rkbax")
+healthbar = NodePath("HealthBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_g1dw6")
@@ -19,7 +20,8 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16, 28)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yw30f")
+position = Vector2(-0.342466, 0)
+shape = SubResource("CapsuleShape2D_rkbax")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -17.0
@@ -29,4 +31,8 @@ offset_bottom = -21.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_rkbax")
 show_percentage = false
 
-[node name="Timer" type="Timer" parent="."]
+[node name="dashCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="dashTimer" type="Timer" parent="."]
+wait_time = 0.5
