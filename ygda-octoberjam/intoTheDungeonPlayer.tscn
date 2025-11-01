@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cufo1evpompqv"]
+
+[ext_resource type="AudioStream" uid="uid://d0hxhonajoyq7" path="res://assets/into the dungeon.mp3" id="1_ek70b"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_ek70b")
+autoplay = true
