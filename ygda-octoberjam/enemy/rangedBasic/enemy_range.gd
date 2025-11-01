@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED: int = 25
 var x_direction: int = 1
+var hp: int = 100
 var dmg: int = 10
 var player: CharacterBody2D = null
 
@@ -15,6 +16,8 @@ func _ready():
 
 # Called every frame. 'delta' i	s the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if hp <= 0:
+		queue_free()
 	if shouldMove == true:
 		var direction = (player.global_position - global_position).normalized()
 		
@@ -49,3 +52,6 @@ func shot():
 	shoot()
 	$"Bullet Cooldown".start(5)
 	canShoot = false
+
+func takeDmg(num: int):
+	hp -= num
