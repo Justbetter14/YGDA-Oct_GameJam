@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var SPEED: int = 200
-const JUMP_POW: int = -550
+const JUMP_POW: int = -600
 var x_direction: int = 0
 var max_health: int = 100
 var currHealth: int = 100
@@ -45,10 +45,10 @@ func _physics_process(delta: float) -> void:
 			# $Sprite2D.play("walk")
 		elif Input.is_action_pressed("Right"):
 			x_direction = 1
-			# $Sprite2D.play("walk")
+			$Sprite2D.play("right")
 		else:
 			x_direction = 0
-			# $Sprite2D.play("idle")
+			$Sprite2D.play("idle")
 	
 	
 	#dash/attack
@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 			canDash = false
 		
 	if dashing:
-		SPEED = 800
+		SPEED = 600
 	else:
 		SPEED = 200
 	
@@ -77,10 +77,13 @@ func dmg(num: int):
 	currHealth -= num
 	health_Update()
 
-#dash stuff
-func _on_dashCooldown_timeout() -> void:
-	dashCD = false
+#dash stuffwd
 
-func _on_dashTimer_timeout() -> void:
+func _on_dash_timer_timeout() -> void:
 	dashing = false
+	pass # Replace with function body.
+
+
+func _on_dash_cooldown_timeout() -> void:
+	dashCD = false
 	pass # Replace with function body.
