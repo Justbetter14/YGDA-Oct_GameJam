@@ -176,9 +176,19 @@ position = Vector2(-5, -399)
 
 [node name="Enemy Bullet" parent="." instance=ExtResource("7_o6xl0")]
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+[node name="EnemyRange2" parent="." instance=ExtResource("6_o6xl0")]
+position = Vector2(314, -267)
+=======
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("8_tipki")]
+volume_db = -24.36
+>>>>>>> main
+=======
 [node name="EnemyRange2" parent="." instance=ExtResource("6_o6xl0")]
 position = Vector2(314, -267)
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("8_tipki")]
 volume_db = -24.36
+>>>>>>> 2821b8ee8f65bc8fb7a48b8e65fe1dbc8378e947
 
 [connection signal="body_entered" from="Void" to="Void" method="_on_body_entered"]
