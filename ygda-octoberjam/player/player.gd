@@ -10,6 +10,7 @@ var currHealth: int = 100
 var canDash: bool = true
 var dashCD: bool = false
 var dashing: bool = false
+var iframe: bool = false
 
 signal death
 
@@ -74,8 +75,11 @@ func die():
 	queue_free()
 
 func dmg(num: int):
-	currHealth -= num
-	health_Update()
+	if iframe == false:
+		currHealth -= num
+		health_Update()
+		iframe = true
+		$iFrame.start()
 
 #dash stuffwd
 
@@ -86,4 +90,9 @@ func _on_dash_timer_timeout() -> void:
 
 func _on_dash_cooldown_timeout() -> void:
 	dashCD = false
+	pass # Replace with function body.
+
+
+func _on_i_frame_timeout() -> void:
+	iframe = false
 	pass # Replace with function body.

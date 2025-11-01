@@ -176,6 +176,8 @@ position = Vector2(-5, -399)
 
 [node name="Enemy Bullet" parent="." instance=ExtResource("7_o6xl0")]
 
+[node name="EnemyRange2" parent="." instance=ExtResource("6_o6xl0")]
+position = Vector2(314, -267)
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("8_tipki")]
 volume_db = -24.36
 
