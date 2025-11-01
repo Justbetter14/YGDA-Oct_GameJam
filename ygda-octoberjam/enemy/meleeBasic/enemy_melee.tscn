@@ -4,27 +4,29 @@
 [ext_resource type="Texture2D" uid="uid://dgbj0phv5ppj1" path="res://pixil-frame-1.png" id="2_qcgh8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcgh8"]
-radius = 56.0
-height = 146.0
+radius = 21.0
+height = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qcgh8"]
-radius = 123.016
+radius = 88.0227
 
 [node name="EnemyMelee" type="CharacterBody2D"]
 script = ExtResource("1_yws7p")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." groups=["enemy"]]
-position = Vector2(50, 63)
+position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_qcgh8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(64, 71)
+position = Vector2(7, 0)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_qcgh8")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(50, 61)
+position = Vector2(144, 44)
 
 [node name="Attack Range" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-147, -44)
 shape = SubResource("CircleShape2D_qcgh8")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
