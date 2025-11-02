@@ -72,7 +72,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Bite1",
-"speed": 4.5
+"speed": 13.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -89,7 +89,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Bite2",
-"speed": 6.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -131,7 +131,7 @@ sprite_frames = SubResource("SpriteFrames_iiveb")
 animation = &"Bite2"
 
 [node name="attackTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.033
 one_shot = true
 
 [connection signal="body_entered" from="Hit Box Area" to="." method="_on_hit_box_area_body_entered"]
