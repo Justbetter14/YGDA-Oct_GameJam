@@ -122,5 +122,5 @@ func applyKnockback(direction: Vector2, force: float, knockbackDuration: float) 
 		print('yay')
 		knockback = direction*force
 		knockback_timer = knockbackDuration
-		dmg(1)
+		dmg(10)
 	

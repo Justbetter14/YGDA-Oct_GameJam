@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://do6q0l3lyweuk"]
+[gd_scene load_steps=21 format=3 uid="uid://do6q0l3lyweuk"]
 
 [ext_resource type="Script" uid="uid://dpbetmb1bv5sj" path="res://enemy/meleeBasic/enemy_melee.gd" id="1_yws7p"]
 [ext_resource type="Texture2D" uid="uid://cbgsc6i63posy" path="res://assets/SKULL(First is idle 2,5-6,9 200-50).png" id="2_7cvww"]
@@ -10,23 +10,43 @@ radius = 23.0
 height = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qcgh8"]
-radius = 66.0076
+radius = 73.0069
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j6kua"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cvww"]
+atlas = ExtResource("2_7cvww")
+region = Rect2(0, 0, 107, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eospx"]
 atlas = ExtResource("2_7cvww")
 region = Rect2(107, 0, 107, 184)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k8jh1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6kua"]
 atlas = ExtResource("2_7cvww")
 region = Rect2(214, 0, 107, 184)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w1cg8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8jh1"]
 atlas = ExtResource("2_7cvww")
 region = Rect2(321, 0, 107, 184)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xe71t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1cg8"]
 atlas = ExtResource("2_7cvww")
 region = Rect2(428, 0, 107, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xe71t"]
+atlas = ExtResource("2_7cvww")
+region = Rect2(535, 0, 107, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiveb"]
+atlas = ExtResource("2_7cvww")
+region = Rect2(642, 0, 107, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7hap"]
+atlas = ExtResource("2_7cvww")
+region = Rect2(749, 0, 107, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpgua"]
+atlas = ExtResource("2_7cvww")
+region = Rect2(856, 0, 107, 184)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2h0jk"]
 atlas = ExtResource("2_7cvww")
@@ -52,6 +72,12 @@ region = Rect2(0, 0, 105, 184)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7cvww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eospx")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_j6kua")
 }, {
 "duration": 1.0,
@@ -62,10 +88,19 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xe71t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiveb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7hap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpgua")
 }],
 "loop": false,
 "name": &"Bite1",
-"speed": 9.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -121,11 +156,11 @@ position = Vector2(2, 0)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_iiveb")
 animation = &"Bite1"
-frame = 3
+frame = 8
 frame_progress = 1.0
 
 [node name="attackTimer" type="Timer" parent="."]
-wait_time = 0.66
+wait_time = 0.67
 
 [connection signal="body_entered" from="Hit Box Area" to="." method="_on_hit_box_area_body_entered"]
 [connection signal="body_entered" from="Attack Area" to="." method="_on_attack_area_body_entered"]
