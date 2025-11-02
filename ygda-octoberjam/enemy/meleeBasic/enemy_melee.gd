@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED: int = 25
+const SPEED: int = 35
 var hp: int = 100
 var x_direction: int = 1
 var dmg: int = 10
@@ -23,15 +23,12 @@ func _physics_process(delta: float) -> void:
 		velocity = SPEED * direction
 		move_and_slide()
 		$Sprite2D.play("Idle")
-	else:
-		if canBite:
-			bite()
-		else:
-			$Sprite2D.play("Idle")
+
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		shouldMove = false
+		$Sprite2D.play("Bite1")
 		$attackTimer.start()
 
 func takeDmg(num: int):
@@ -41,11 +38,7 @@ func bite():
 	#player.dmg(dmg)
 	var knockbackDirection = (player.global_position - global_position).normalized()
 	player.applyKnockback(knockbackDirection, 300.0, 0.2)
-	$Sprite2D.play("Bite1")
-	await $Sprite2D.animation_finished
-	$Sprite2D.play("Bite2")
-	await $Sprite2D.animation_finished
-	$Sprite2D.play("Idle")
+	$Sprite2D.play("idle")
 
 func _on_attack_cooldown_timeout() -> void:
 	$"Bullet Cooldown".stop()
