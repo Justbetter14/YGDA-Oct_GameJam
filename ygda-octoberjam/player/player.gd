@@ -11,6 +11,9 @@ var canDash: bool = true
 var dashCD: bool = false
 var dashing: bool = false
 var iframe: bool = false
+var dir: String = 'right'
+var knockback: Vector2 = Vector2.ZERO
+var knockback_timer: float = 0.0
 
 signal death
 
@@ -43,14 +46,24 @@ func _physics_process(delta: float) -> void:
 	if not dashing:
 		if Input.is_action_pressed("Left"):
 			x_direction = -1
-			# $Sprite2D.play("walk")
+			dir = 'left'
+			$Sprite2D.play('left')
 		elif Input.is_action_pressed("Right"):
 			x_direction = 1
-			$Sprite2D.play("right")
+			dir = 'right'
+			$Sprite2D.play('right')
 		else:
 			x_direction = 0
-			$Sprite2D.play("idle")
-	
+			if(dir == 'left'):
+				$Sprite2D.play('idleLeft')
+			if(dir == 'right'):
+				$Sprite2D.play('idleRight')			
+
+	if dashing:
+		if(dir == 'left'):
+			$Sprite2D.play('dashLeft')
+		if(dir == 'right'):
+			$Sprite2D.play('dashRight')
 	
 	#dash/attack
 	if Input.is_action_pressed("Dash"):
@@ -62,11 +75,17 @@ func _physics_process(delta: float) -> void:
 			canDash = false
 		
 	if dashing:
-		SPEED = 600
+		SPEED = 550
 	else:
 		SPEED = 200
 	
-	velocity.x = x_direction * SPEED
+	if knockback_timer > 0.0:
+		velocity = knockback
+		knockback_timer -= delta
+		if knockback_timer <= 0.0:
+			knockback = Vector2.ZERO
+	else:
+		velocity.x = x_direction * SPEED
 	
 	move_and_slide()
 
@@ -99,4 +118,10 @@ func _on_i_frame_timeout() -> void:
 
 func bounce(enemy):
 	velocity = (global_position - enemy).normalized() * 1000
-	dmg(10)
+	#dmg(10)
+	dmg(1) #changing for playtesting
+	
+func applyKnockback(direction: Vector2, force: float, knockbackDuration: float) -> void:
+	knockback = direction*force
+	knockback_timer = knockbackDuration
+	
