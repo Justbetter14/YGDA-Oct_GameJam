@@ -56,4 +56,6 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 
 func _on_hit_box_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		body.bounce(global_position)
+		var knockbackDirection = (body.global_position - global_position).normalized()
+		body.applyKnockback(knockbackDirection, 300.0, 0.2)
+		#body.bounce(global_position)
