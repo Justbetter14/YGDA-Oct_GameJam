@@ -12,6 +12,7 @@ func _process(delta: float) -> void:
 
 func _on_main_player_death() -> void:
 	print("World Found Player Death")
+	$Main.hide()
 	$UserInterface/Retry.show()
 	$RetryCamera.make_current()
 
@@ -19,3 +20,4 @@ func _unhandled_input(event):
 	if event.is_action_pressed("Select") and $UserInterface/Retry.visible:
 		# This restarts the current scene.
 		get_tree().reload_current_scene()
+	

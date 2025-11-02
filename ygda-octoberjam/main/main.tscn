@@ -12,7 +12,7 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jyhfs"]
 distance = -536.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6xl0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67ri8"]
 texture = ExtResource("2_o6xl0")
 separation = Vector2i(1, 1)
 1:0/0 = 0
@@ -28,7 +28,7 @@ separation = Vector2i(1, 1)
 
 [sub_resource type="TileSet" id="TileSet_tipki"]
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_o6xl0")
+sources/1 = SubResource("TileSetAtlasSource_67ri8")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_67ri8")
