@@ -37,6 +37,8 @@ position = Vector2(-13, -9)
 shape = SubResource("CircleShape2D_773n7")
 
 [node name="Bullet Cooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-4, 27)

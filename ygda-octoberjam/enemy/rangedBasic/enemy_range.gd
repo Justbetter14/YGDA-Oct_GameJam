@@ -34,7 +34,6 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 			shot()
 
 func _on_bullet_cooldown_timeout() -> void:
-	$"Bullet Cooldown".stop()
 	canShoot = true
 
 func shoot():
@@ -49,7 +48,7 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 
 func shot():
 	shoot()
-	$"Bullet Cooldown".start(5)
+	$"Bullet Cooldown".start()
 	canShoot = false
 
 func takeDmg(num: int):
