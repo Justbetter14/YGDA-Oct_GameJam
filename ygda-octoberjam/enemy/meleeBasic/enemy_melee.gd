@@ -29,6 +29,8 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		shouldMove = false
 		$Sprite2D.play("Bite1")
+		await $Sprite2D.animation_finished
+		$Sprite2D.play("Bite2")
 		$attackTimer.start()
 
 func takeDmg(num: int):
@@ -38,10 +40,10 @@ func bite():
 	#player.dmg(dmg)
 	var knockbackDirection = (player.global_position - global_position).normalized()
 	player.applyKnockback(knockbackDirection, 300.0, 0.2)
-	$Sprite2D.play("idle")
+	$Sprite2D.play("Idle")
 
 func _on_attack_cooldown_timeout() -> void:
-	$"Bullet Cooldown".stop()
+	$"Attack Cooldown".stop()
 	canBite = true
 
 func _on_attack_area_body_exited(body: Node2D) -> void:
@@ -53,10 +55,10 @@ func _on_hit_box_area_body_entered(body: Node2D) -> void:
 		var knockbackDirection = (body.global_position - global_position).normalized()
 		body.applyKnockback(knockbackDirection, 300.0, 0.2)
 
-
 func _on_attack_timer_timeout() -> void:
 	for body in $"Attack Area".get_overlapping_bodies():
 		if body.is_in_group("player"):
 			if canBite:
 				bite()
 				shouldMove = true
+				$"Attack Cooldown".start()
