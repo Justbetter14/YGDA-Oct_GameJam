@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://do6q0l3lyweuk"]
+[gd_scene load_steps=17 format=3 uid="uid://do6q0l3lyweuk"]
 
 [ext_resource type="Script" uid="uid://dpbetmb1bv5sj" path="res://enemy/meleeBasic/enemy_melee.gd" id="1_yws7p"]
 [ext_resource type="Texture2D" uid="uid://cbgsc6i63posy" path="res://assets/SKULL(First is idle 2,5-6,9 200-50).png" id="2_7cvww"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7cvww"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcgh8"]
 radius = 23.0
@@ -77,9 +79,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n4t7i")
 }],
-"loop": true,
+"loop": false,
 "name": &"Bite",
-"speed": 8.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -96,7 +98,13 @@ radius = 66.0076
 [node name="EnemyMelee" type="CharacterBody2D"]
 script = ExtResource("1_yws7p")
 
-[node name="Hitbox" type="CollisionShape2D" parent="." groups=["enemy"]]
+[node name="Empty" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7cvww")
+disabled = true
+
+[node name="Hit Box Area" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hit Box Area" groups=["enemy"]]
 position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_qcgh8")
 
@@ -106,16 +114,17 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_iiveb")
 animation = &"Bite"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Attack Area" type="Area2D" parent="."]
 position = Vector2(144, 44)
 
-[node name="Attack Range" type="CollisionShape2D" parent="Area2D"]
+[node name="Attack Range" type="CollisionShape2D" parent="Attack Area"]
 position = Vector2(-143, -52)
 shape = SubResource("CircleShape2D_qcgh8")
 
 [node name="Attack Cooldown" type="Timer" parent="."]
 wait_time = 5.0
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Hit Box Area" to="." method="_on_hit_box_area_body_entered"]
+[connection signal="body_entered" from="Attack Area" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Attack Area" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Attack Cooldown" to="." method="_on_attack_cooldown_timeout"]
