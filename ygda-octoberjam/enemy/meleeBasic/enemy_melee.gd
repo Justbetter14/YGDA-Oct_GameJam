@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			$Sprite2D.play("Idle")
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		shouldMove = false
 		if canBite:
@@ -41,11 +41,15 @@ func takeDmg(num: int):
 func bite():
 	player.dmg(dmg)
 	$Sprite2D.play("Bite")
-	
+
 func _on_attack_cooldown_timeout() -> void:
 	$"Bullet Cooldown".stop()
 	canBite = true
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
+func _on_attack_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		shouldMove = true
+
+func _on_hit_box_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		body.bounce(global_position)

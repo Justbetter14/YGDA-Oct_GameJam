@@ -3,7 +3,6 @@ extends CharacterBody2D
 const SPEED: int = 25
 var x_direction: int = 1
 var hp: int = 100
-var dmg: int = 10
 var player: CharacterBody2D = null
 
 var canShoot: bool = true
@@ -28,7 +27,7 @@ func _physics_process(delta: float) -> void:
 			shot()
 		
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		shouldMove = false
 		if canShoot:
@@ -44,7 +43,7 @@ func shoot():
 	instance.direction = (player.global_position - global_position).normalized()
 	get_parent().add_child(instance)
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
+func _on_attack_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		shouldMove = true
 
@@ -55,3 +54,7 @@ func shot():
 
 func takeDmg(num: int):
 	hp -= num
+
+func _on_hit_box_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		body.bounce(global_position)

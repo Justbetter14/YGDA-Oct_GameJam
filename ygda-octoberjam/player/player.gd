@@ -96,3 +96,7 @@ func _on_dash_cooldown_timeout() -> void:
 func _on_i_frame_timeout() -> void:
 	iframe = false
 	pass # Replace with function body.
+
+func bounce(enemy):
+	velocity = (global_position - enemy).normalized() * 1000
+	dmg(10)
