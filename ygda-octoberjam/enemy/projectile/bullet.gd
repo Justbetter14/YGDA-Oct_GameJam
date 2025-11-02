@@ -20,5 +20,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		var knockbackDirection = (player.global_position - global_position).normalized()
-		player.applyKnockback(knockbackDirection, 300.0, 0.2)
+		player.applyKnockback(knockbackDirection, 150.0, 0.2, dmg)
 		queue_free()

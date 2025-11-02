@@ -4,7 +4,7 @@ var SPEED: int = 200
 const JUMP_POW: int = -600
 var x_direction: int = 0
 var max_health: int = 100
-var currHealth: int = 100
+var currHealth: int = 110
 @export var healthbar : ProgressBar;
 #stuff for dash
 var canDash: bool = true
@@ -20,13 +20,16 @@ signal death
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	healthbar.max_value = max_health
+	print(healthbar.max_value)
 	health_Update()
 
 func health_Update() -> void:
-	if currHealth == 0:
+	if currHealth <= 0:
+		healthbar.value = currHealth
 		die()
 	else:
 		healthbar.value = currHealth
+		print(healthbar.value)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -91,9 +94,9 @@ func _physics_process(delta: float) -> void:
 
 func die():
 	death.emit()
-	queue_free()
 
 func dmg(num: int):
+	print('triggered')
 	if iframe == false:
 		currHealth -= num
 		health_Update()
@@ -116,11 +119,11 @@ func _on_i_frame_timeout() -> void:
 	iframe = false
 	pass # Replace with function body.
 	
-func applyKnockback(direction: Vector2, force: float, knockbackDuration: float) -> void:
+func applyKnockback(direction: Vector2, force: float, knockbackDuration: float, dmg: int) -> void:
 	print(iframe)
 	if iframe == false:
 		print('yay')
 		knockback = direction*force
 		knockback_timer = knockbackDuration
-		dmg(10)
+		dmg(dmg)
 	
