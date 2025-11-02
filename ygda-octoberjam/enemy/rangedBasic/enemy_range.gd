@@ -57,4 +57,5 @@ func takeDmg(num: int):
 
 func _on_hit_box_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		body.bounce(global_position)
+		var knockbackDirection = (body.global_position - global_position).normalized()
+		body.applyKnockback(knockbackDirection, 300.0, 0.2)
