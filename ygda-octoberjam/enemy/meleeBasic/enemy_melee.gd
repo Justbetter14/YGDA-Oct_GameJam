@@ -39,7 +39,9 @@ func takeDmg(num: int):
 	hp -= num
 
 func bite():
-	player.dmg(dmg)
+	#player.dmg(dmg)
+	var knockbackDirection = (player.global_position - global_position).normalized()
+	player.applyKnockback(knockbackDirection, 300.0, 0.2)
 	$Sprite2D.play("Bite1")
 	await $Sprite2D.animation_finished
 	$Sprite2D.play("Bite2")
