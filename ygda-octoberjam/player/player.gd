@@ -117,7 +117,9 @@ func _on_i_frame_timeout() -> void:
 	pass # Replace with function body.
 	
 func applyKnockback(direction: Vector2, force: float, knockbackDuration: float) -> void:
+	print(iframe)
 	if iframe == false:
+		print('yay')
 		knockback = direction*force
 		knockback_timer = knockbackDuration
 		dmg(1)
