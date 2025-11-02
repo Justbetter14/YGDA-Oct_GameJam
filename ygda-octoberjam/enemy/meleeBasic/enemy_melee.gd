@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	for body in $"Hit Box Area".get_overlapping_bodies():
 		if body.is_in_group("player"):
 			var knockbackDirection = (player.global_position - global_position).normalized()
-			player.applyKnockback(knockbackDirection, 150.0, 0.2, dmg)			
+			player.applyKnockback(knockbackDirection, 300, 0.2, dmg)			
 	if shouldMove == true:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = SPEED * direction
@@ -47,7 +47,7 @@ func takeDmg(num: int):
 func bite():
 	#player.dmg(dmg)
 	var knockbackDirection = (player.global_position - global_position).normalized()
-	player.applyKnockback(knockbackDirection, 150.0, 0.2, dmg)
+	player.applyKnockback(knockbackDirection, 400, 0.2, dmg)
 	$Sprite2D.play("Idle")
 
 func _on_attack_cooldown_timeout() -> void:
