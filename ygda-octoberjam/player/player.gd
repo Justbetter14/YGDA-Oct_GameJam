@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var SPEED: int = 200
+var SPEED: int = 250
 const JUMP_POW: int = -600
 var x_direction: int = 0
 var max_health: int = 100
@@ -42,8 +42,10 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		canDash = true
 	
-	if Input.is_action_pressed("Up") and is_on_floor():
-		velocity.y += JUMP_POW
+	if Input.is_action_just_pressed("Up") and is_on_floor():
+		velocity.y = JUMP_POW
+	elif velocity.y < 0.0 and Input.is_action_just_released("Up"):
+		velocity.y *= 0.2
 		
 	#this should work even when you dont have power up, just like make canDash always false if you dont have it (so that you cant change direction while dashign)
 	if not dashing:
@@ -80,7 +82,7 @@ func _physics_process(delta: float) -> void:
 	if dashing:
 		SPEED = 550
 	else:
-		SPEED = 200
+		SPEED = 250
 	
 	if knockback_timer > 0.0:
 		velocity = knockback
