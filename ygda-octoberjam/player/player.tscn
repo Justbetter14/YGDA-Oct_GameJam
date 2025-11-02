@@ -226,7 +226,7 @@ position = Vector2(0, -7.79592)
 scale = Vector2(1, 1.55685)
 sprite_frames = SubResource("SpriteFrames_ebec5")
 animation = &"dashRight"
-frame_progress = 0.594136
+frame_progress = 0.0215118
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.342466, 0)
