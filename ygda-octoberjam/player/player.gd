@@ -115,13 +115,10 @@ func _on_dash_cooldown_timeout() -> void:
 func _on_i_frame_timeout() -> void:
 	iframe = false
 	pass # Replace with function body.
-
-func bounce(enemy):
-	velocity = (global_position - enemy).normalized() * 1000
-	#dmg(10)
-	dmg(1) #changing for playtesting
 	
 func applyKnockback(direction: Vector2, force: float, knockbackDuration: float) -> void:
-	knockback = direction*force
-	knockback_timer = knockbackDuration
+	if iframe == false:
+		knockback = direction*force
+		knockback_timer = knockbackDuration
+		dmg(1)
 	

@@ -228,7 +228,7 @@ sprite_frames = SubResource("SpriteFrames_ebec5")
 animation = &"dashRight"
 frame_progress = 0.594136
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Platform Collision" type="CollisionShape2D" parent="."]
 position = Vector2(-0.342466, 0)
 shape = SubResource("CapsuleShape2D_rkbax")
 
