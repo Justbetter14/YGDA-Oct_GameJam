@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://blhmbjqylc0"]
+[gd_scene load_steps=5 format=3 uid="uid://blhmbjqylc0"]
 
 [ext_resource type="Script" uid="uid://g4rcn8p07gqk" path="res://main/world.gd" id="1_cadw0"]
 [ext_resource type="PackedScene" uid="uid://cagirvs1kuwi7" path="res://main/main.tscn" id="2_sdvrk"]
+
+[sub_resource type="FontFile" id="FontFile_cadw0"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_sdvrk"]
+font = SubResource("FontFile_cadw0")
+font_color = Color(0, 0, 0, 1)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_cadw0")
@@ -10,24 +21,39 @@ script = ExtResource("1_cadw0")
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-
-[node name="Retry" type="ColorRect" parent="UserInterface"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+
+[node name="Retry" type="ColorRect" parent="UserInterface"]
+layout_mode = 0
+offset_left = -481.0
+offset_top = -68.0
+offset_right = -241.0
+offset_bottom = 67.0
+scale = Vector2(4, 4)
+pivot_offset = Vector2(0, 67)
 
 [node name="Label" type="Label" parent="UserInterface/Retry"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -11.5
+offset_right = 60.5
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Click E to restart"
+text = "Press E to Retry"
+label_settings = SubResource("LabelSettings_sdvrk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryCamera" type="Camera2D" parent="."]
 
 [connection signal="PlayerDeath" from="Main" to="." method="_on_main_player_death"]
