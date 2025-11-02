@@ -40,7 +40,11 @@ func takeDmg(num: int):
 
 func bite():
 	player.dmg(dmg)
-	$Sprite2D.play("Bite")
+	$Sprite2D.play("Bite1")
+	await $Sprite2D.animation_finished
+	$Sprite2D.play("Bite2")
+	await $Sprite2D.animation_finished
+	$Sprite2D.play("Idle")
 
 func _on_attack_cooldown_timeout() -> void:
 	$"Bullet Cooldown".stop()

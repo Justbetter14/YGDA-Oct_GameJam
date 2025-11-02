@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://do6q0l3lyweuk"]
+[gd_scene load_steps=16 format=3 uid="uid://do6q0l3lyweuk"]
 
 [ext_resource type="Script" uid="uid://dpbetmb1bv5sj" path="res://enemy/meleeBasic/enemy_melee.gd" id="1_yws7p"]
 [ext_resource type="Texture2D" uid="uid://cbgsc6i63posy" path="res://assets/SKULL(First is idle 2,5-6,9 200-50).png" id="2_7cvww"]
@@ -9,9 +9,8 @@
 radius = 23.0
 height = 50.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eospx"]
-atlas = ExtResource("2_7cvww")
-region = Rect2(0, 0, 107, 184)
+[sub_resource type="CircleShape2D" id="CircleShape2D_qcgh8"]
+radius = 66.0076
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6kua"]
 atlas = ExtResource("2_7cvww")
@@ -53,9 +52,6 @@ region = Rect2(0, 0, 105, 184)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eospx")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_j6kua")
 }, {
 "duration": 1.0,
@@ -66,7 +62,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xe71t")
+}],
+"loop": false,
+"name": &"Bite1",
+"speed": 2.5
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2h0jk")
 }, {
@@ -80,8 +81,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_n4t7i")
 }],
 "loop": false,
-"name": &"Bite",
-"speed": 5.0
+"name": &"Bite2",
+"speed": 2.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -91,9 +92,6 @@ animations = [{
 "name": &"Idle",
 "speed": 0.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_qcgh8"]
-radius = 66.0076
 
 [node name="EnemyMelee" type="CharacterBody2D"]
 script = ExtResource("1_yws7p")
@@ -108,12 +106,6 @@ disabled = true
 position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_qcgh8")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(2, 0)
-scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_iiveb")
-animation = &"Bite"
-
 [node name="Attack Area" type="Area2D" parent="."]
 position = Vector2(144, 44)
 
@@ -124,7 +116,13 @@ shape = SubResource("CircleShape2D_qcgh8")
 [node name="Attack Cooldown" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, 0)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_iiveb")
+animation = &"Bite2"
+
 [connection signal="body_entered" from="Hit Box Area" to="." method="_on_hit_box_area_body_entered"]
-[connection signal="body_entered" from="Attack Area" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Attack Area" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Attack Area" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="Attack Area" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="Attack Cooldown" to="." method="_on_attack_cooldown_timeout"]
