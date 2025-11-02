@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://blhmbjqylc0"]
+
+[ext_resource type="Script" uid="uid://g4rcn8p07gqk" path="res://main/world.gd" id="1_cadw0"]
+[ext_resource type="PackedScene" uid="uid://cagirvs1kuwi7" path="res://main/main.tscn" id="2_sdvrk"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_cadw0")
+
+[node name="Main" parent="." instance=ExtResource("2_sdvrk")]
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Retry" type="ColorRect" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="UserInterface/Retry"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Click E to restart"
+
+[connection signal="PlayerDeath" from="Main" to="." method="_on_main_player_death"]

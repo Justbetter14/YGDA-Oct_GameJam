@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED: int = 25
 var x_direction: int = 1
 var hp: int = 100
+var dmg: int = 10
 var player: CharacterBody2D = null
 
 var canShoot: bool = true
@@ -57,4 +58,4 @@ func takeDmg(num: int):
 func _on_hit_box_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		var knockbackDirection = (body.global_position - global_position).normalized()
-		body.applyKnockback(knockbackDirection, 300.0, 0.2)
+		body.applyKnockback(knockbackDirection, 150.0, 0.2, dmg)
