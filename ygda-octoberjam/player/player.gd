@@ -14,6 +14,8 @@ var iframe: bool = false
 var dir: String = 'right'
 var knockback: Vector2 = Vector2.ZERO
 var knockback_timer: float = 0.0
+var canDoubleJump: bool = true
+var jumpCount: int = 0
 
 signal death
 
@@ -41,9 +43,12 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_floor():
 		canDash = true
+		jumpCount = 0
 	
-	if Input.is_action_just_pressed("Up") and is_on_floor():
-		velocity.y = JUMP_POW
+	if Input.is_action_just_pressed("Up") and (is_on_floor() or (canDoubleJump == true and jumpCount < 2)):
+		print(jumpCount)
+		jumpCount += 1
+		velocity.y += JUMP_POW
 	elif velocity.y < 0.0 and Input.is_action_just_released("Up"):
 		velocity.y *= 0.2
 		
