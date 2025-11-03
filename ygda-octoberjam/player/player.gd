@@ -16,27 +16,28 @@ var knockback: Vector2 = Vector2.ZERO
 var knockback_timer: float = 0.0
 
 @export var currentCard : Card
+const emptyCard = preload("res://Cards/Resources/emptyCard.tres")
 var CurrentMove: Card
 var CurrentAttack: Card
 
 # Dash
-var canDash: bool = true
+var canDash: bool = false
 var dashCD: bool = false
 var dashing: bool = false
 
 # Double Jump
-var canDoubleJump: bool = true
+var canDoubleJump: bool = false
 var jumpCount: int = 0
 
 # Wall Jump
-var canWallJump: bool = true
+var canWallJump: bool = false
 
 # Fireball
-var canFire: bool = true
+var canFire: bool = false
 const fireball = preload("res://player/fireball/fireball.tscn")
 
 # Dagger / Ghostly Darts
-var canDagger: bool = true
+var canDagger: bool = false
 const daggerZero = preload("res://player/dagger/daggerStraight.tscn")
 const daggerPos = preload("res://player/dagger/daggerPos.tscn")
 const daggerNeg = preload("res://player/dagger/daggerNeg.tscn")
@@ -136,7 +137,7 @@ func wallJump():
 
 func dash():
 	if Input.is_action_pressed("Dash"):
-		if(not dashCD) and canDash:
+		if (not dashCD) and canDash:
 			$dashTimer.start()
 			$dashCooldown.start()
 			iframe = true
@@ -285,15 +286,30 @@ func dagger():
 
 func cardDetect():
 	if (currentCard):
-		if currentCard.cardType == 'attack':
-			CurrentAttack = currentCard
-			canFire = CurrentAttack.ableFire
-			canDagger = CurrentAttack.ableDagger
-			canSword = CurrentAttack.ableSword
-			print(CurrentAttack.display_name)
-		if currentCard.cardType == 'movement':
-			CurrentMove = currentCard
-			canDash = CurrentMove.ableDash
-			canDoubleJump = CurrentMove.ableDoubleJump
-			canWallJump = CurrentMove.ableWallJump
-			print(CurrentMove.display_name)
+		var currentButton: Button = null
+		
+		if currentCard.texture == $"../CanvasLayer/Inventory/GridContainer/cardButton1".icon:
+			currentButton = $"../CanvasLayer/Inventory/GridContainer/cardButton1"
+		elif currentCard.texture == $"../CanvasLayer/Inventory/GridContainer/cardButton2".icon:
+			currentButton = $"../CanvasLayer/Inventory/GridContainer/cardButton2"
+		elif currentCard.texture == $"../CanvasLayer/Inventory/GridContainer/cardButton3".icon:
+			currentButton = $"../CanvasLayer/Inventory/GridContainer/cardButton3"
+		
+		if currentButton != null:
+			if currentCard.cardType == 'attack':
+				CurrentAttack = currentCard
+				canFire = CurrentAttack.ableFire
+				canDagger = CurrentAttack.ableDagger
+				canSword = CurrentAttack.ableSword
+				currentCard = emptyCard
+				
+				print(CurrentAttack.display_name)
+			if currentCard.cardType == 'movement':
+				CurrentMove = currentCard
+				canDash = CurrentMove.ableDash
+				canDoubleJump = CurrentMove.ableDoubleJump
+				canWallJump = CurrentMove.ableWallJump
+				currentCard = emptyCard
+				print(CurrentMove.display_name)
+			
+			currentButton.icon = emptyCard.texture
