@@ -217,6 +217,7 @@ bg_color = Color(0, 1, 0, 1)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("healthbar") groups=["player"]]
 scale = Vector2(2.92, 1.96)
+safe_margin = 0.14
 script = ExtResource("1_rkbax")
 healthbar = NodePath("HealthBar")
 
