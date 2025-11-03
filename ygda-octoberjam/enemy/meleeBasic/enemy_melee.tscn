@@ -100,7 +100,7 @@ animations = [{
 "speed": 0.0
 }]
 
-[node name="EnemyMelee" type="CharacterBody2D"]
+[node name="EnemyMelee" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_yws7p")
 
 [node name="Empty" type="CollisionShape2D" parent="."]
