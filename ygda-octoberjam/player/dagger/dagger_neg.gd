@@ -4,10 +4,12 @@ class_name Dagger2
 
 var speed: int = 750
 @export var dmg: int = 100
-var direction: Vector2 = Vector2.RIGHT
+var direction: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if direction == Vector2.ZERO:
+		queue_free()
 	direction = direction.rotated(deg_to_rad(+20))
 	direction = direction.normalized()
 	rotation = direction.angle()

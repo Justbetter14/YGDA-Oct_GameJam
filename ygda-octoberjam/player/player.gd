@@ -215,22 +215,26 @@ func fireBall():
 		var fire: Area2D = fireball.instantiate()
 		fire.position = position
 		
-		var Fdirection: Vector2
+		var Fdirection = Vector2.ZERO
 		
-		if dir == 'right':
+		if Input.is_action_pressed("Right"):
 			if Input.is_action_pressed("Aiming Up"):
 				Fdirection = Vector2.RIGHT.rotated(deg_to_rad(-45))
 			elif Input.is_action_pressed("Aiming Down"):
 				Fdirection = Vector2.RIGHT.rotated(deg_to_rad(+45))
 			else:
 				Fdirection = Vector2.RIGHT
-		elif dir == 'left':
+		elif Input.is_action_pressed("Left"):
 			if Input.is_action_pressed("Aiming Up"):
 				Fdirection = Vector2.LEFT.rotated(deg_to_rad(+45))
 			elif Input.is_action_pressed("Aiming Down"):
 				Fdirection = Vector2.LEFT.rotated(deg_to_rad(-45))
 			else:
 				Fdirection = Vector2.LEFT
+		elif Input.is_action_pressed("Aiming Up"):
+			Fdirection = Vector2.UP
+		elif Input.is_action_pressed("Aiming Down"):
+			Fdirection = Vector2.DOWN
 		
 		fire.direction = Fdirection
 		
@@ -246,8 +250,26 @@ func dagger():
 		var dagNeg1: Area2D = daggerNeg.instantiate()
 		dagNeg1.position = position
 		
-		var target = get_global_mouse_position()
-		var Ddirection = (target - global_position).normalized()
+		var Ddirection = Vector2.ZERO
+		
+		if Input.is_action_pressed("Right"):
+			if Input.is_action_pressed("Aiming Up"):
+				Ddirection = Vector2.RIGHT.rotated(deg_to_rad(-45))
+			elif Input.is_action_pressed("Aiming Down"):
+				Ddirection = Vector2.RIGHT.rotated(deg_to_rad(+45))
+			else:
+				Ddirection = Vector2.RIGHT
+		elif Input.is_action_pressed("Left"):
+			if Input.is_action_pressed("Aiming Up"):
+				Ddirection = Vector2.LEFT.rotated(deg_to_rad(+45))
+			elif Input.is_action_pressed("Aiming Down"):
+				Ddirection = Vector2.LEFT.rotated(deg_to_rad(-45))
+			else:
+				Ddirection = Vector2.LEFT
+		elif Input.is_action_pressed("Aiming Up"):
+			Ddirection = Vector2.UP
+		elif Input.is_action_pressed("Aiming Down"):
+			Ddirection = Vector2.DOWN
 		
 		dag0.direction = Ddirection
 		dagPos1.direction = Ddirection
