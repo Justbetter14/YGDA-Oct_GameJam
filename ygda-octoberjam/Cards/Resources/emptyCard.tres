@@ -7,4 +7,11 @@
 script = ExtResource("1_l6yi8")
 display_name = "empty"
 texture = ExtResource("2_dy42m")
+cardType = "none"
+ableDash = false
+ableDoubleJump = false
+ableWallJump = false
+ableFire = false
+ableDagger = false
+ableSword = false
 metadata/_custom_type_script = "uid://oslmdvxnn3bx"

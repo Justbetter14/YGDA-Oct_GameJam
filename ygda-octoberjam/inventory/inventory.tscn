@@ -1,14 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm6oop1vqlltf"]
+[gd_scene load_steps=9 format=3 uid="uid://cm6oop1vqlltf"]
 
 [ext_resource type="Script" uid="uid://bvv607xnkk631" path="res://inventory/inventory.gd" id="1_qse2j"]
 [ext_resource type="PackedScene" uid="uid://c2h6nws8gno51" path="res://inventory/card_button_1.tscn" id="2_qse2j"]
 [ext_resource type="Resource" uid="uid://d0jdxaw73yutd" path="res://Cards/Resources/dashCard.tres" id="3_f8i2h"]
 [ext_resource type="Texture2D" uid="uid://dbjf5lg3s1ejb" path="res://assets/dasher.png" id="3_lhcfm"]
 [ext_resource type="Texture2D" uid="uid://cjhm4oe42kkkt" path="res://assets/FlameOn.png" id="5_f2511"]
-[ext_resource type="Resource" uid="uid://c604u41scjxbc" path="res://Cards/Resources/emptyCard.tres" id="5_wbsyq"]
 [ext_resource type="Resource" uid="uid://jcyknvko3eux" path="res://Cards/Resources/fireballCard.tres" id="6_0dv6l"]
+[ext_resource type="Texture2D" uid="uid://cl4ka6uhx81mx" path="res://assets/trishot.png" id="7_0dv6l"]
+[ext_resource type="Resource" uid="uid://dh1sxe8310w6b" path="res://Cards/Resources/daggerCard.tres" id="8_022t5"]
 
-[node name="Control" type="Control"]
+[node name="Inventory" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,4 +46,5 @@ card = ExtResource("6_0dv6l")
 
 [node name="cardButton3" parent="GridContainer" instance=ExtResource("2_qse2j")]
 layout_mode = 2
-card = ExtResource("5_wbsyq")
+icon = ExtResource("7_0dv6l")
+card = ExtResource("8_022t5")
