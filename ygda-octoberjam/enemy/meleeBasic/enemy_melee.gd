@@ -70,5 +70,11 @@ func _on_attack_timer_timeout() -> void:
 
 func _on_hit_box_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("attack"):
-		print("Attack Contact")
+		print("Print Projectivle Contatatstc")
+		if area is Fireball:
+			print("Fire Hit")
+			area.aoe()
+		if area is Dagger0 or area is Dagger1 or area is Dagger2:
+			print("Dagger Hit")
+			area.queue_free()
 		takeDmg(area.dmg)

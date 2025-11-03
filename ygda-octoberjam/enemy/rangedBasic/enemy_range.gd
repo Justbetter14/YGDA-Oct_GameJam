@@ -64,4 +64,11 @@ func _on_hit_box_area_body_entered(body: Node2D) -> void:
 func _on_hit_box_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("attack"):
 		print("Print Projectivle Contatatstc")
+		if area is Fireball:
+			print("Fire Hit")
+			area.aoe()
+			area.queue_free()
+		if area is Dagger0 or area is Dagger1 or area is Dagger2:
+			print("Dagger Hit")
+			area.queue_free()
 		takeDmg(area.dmg)

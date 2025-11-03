@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Dagger2
+
 var speed: int = 750
 @export var dmg: int = 100
 var direction: Vector2 = Vector2.RIGHT
