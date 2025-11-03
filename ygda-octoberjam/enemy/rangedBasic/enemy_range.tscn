@@ -43,6 +43,7 @@ one_shot = true
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-4, 27)
 
+[connection signal="area_entered" from="Hit Box Area" to="." method="_on_hit_box_area_area_entered"]
 [connection signal="body_entered" from="Hit Box Area" to="." method="_on_hit_box_area_body_entered"]
 [connection signal="body_entered" from="Attack Area" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="Attack Area" to="." method="_on_attack_area_body_exited"]

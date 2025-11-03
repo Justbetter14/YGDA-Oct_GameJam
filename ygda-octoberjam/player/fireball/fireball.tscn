@@ -101,7 +101,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Fireball" type="Area2D"]
+[node name="Fireball" type="Area2D" groups=["attack"]]
 script = ExtResource("1_pev22")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

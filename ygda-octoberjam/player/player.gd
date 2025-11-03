@@ -1,11 +1,15 @@
 extends CharacterBody2D
 
+# Jump & Speed Related
 var SPEED: int = 250
 const JUMP_POW: int = -600
 var x_direction: int = 0
+
+# Health Related
 var max_health: int = 100
 var currHealth: int = 100
 @export var healthbar : ProgressBar;
+
 var iframe: bool = false
 var dir: String = 'right'
 var knockback: Vector2 = Vector2.ZERO

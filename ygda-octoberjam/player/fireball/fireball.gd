@@ -1,7 +1,7 @@
 extends Area2D
 
 var speed: int = 225
-var dmg: int = 100
+@export var dmg: int = 100
 var direction: Vector2 = Vector2.RIGHT
 
 # Called when the node enters the scene tree for the first time.
@@ -16,8 +16,8 @@ func _physics_process(delta: float):
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
-	
-func _on_body_entered(body: Node2D) -> void:
+
+func _on_body_entered(body: CharacterBody2D) -> void:
 	for body2 in $AOE.get_overlapping_bodies():
 		if body2.is_in_group("enemy"):
 			print("enemyHit")
