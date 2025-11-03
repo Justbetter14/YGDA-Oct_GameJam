@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2h6nws8gno51"]
+
+[ext_resource type="Texture2D" uid="uid://7074ai6kpocm" path="res://assets/CardTemplate.png" id="1_0ey7a"]
+[ext_resource type="Script" uid="uid://c3exfdkup4mfq" path="res://inventory/card_button_1.gd" id="2_6dpks"]
+
+[node name="cardButton1" type="Button"]
+icon = ExtResource("1_0ey7a")
+script = ExtResource("2_6dpks")

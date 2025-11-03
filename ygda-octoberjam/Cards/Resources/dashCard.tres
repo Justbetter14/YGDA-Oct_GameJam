@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://d0jdxaw73yutd"]
+
+[ext_resource type="Script" uid="uid://oslmdvxnn3bx" path="res://Cards/Resources/card.gd" id="1_11itn"]
+[ext_resource type="Texture2D" uid="uid://dbjf5lg3s1ejb" path="res://assets/dasher.png" id="2_xinpn"]
+
+[resource]
+script = ExtResource("1_11itn")
+display_name = "dash"
+texture = ExtResource("2_xinpn")
+metadata/_custom_type_script = "uid://oslmdvxnn3bx"
