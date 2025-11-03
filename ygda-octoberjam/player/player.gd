@@ -110,11 +110,11 @@ func wallJump():
 			if Input.is_action_pressed("Right"):
 				print("wall jumped right")
 				velocity.y = JUMP_POW
-				velocity.x = -100
+				velocity.x = -200
 			if Input.is_action_pressed("Left"):
 				print("wall jumped left")
 				velocity.y = JUMP_POW
-				velocity.x = 100
+				velocity.x = 200
 
 func dash():
 	if Input.is_action_pressed("Dash"):
@@ -144,11 +144,32 @@ func animation():
 		if Input.is_action_pressed("Left"):
 			x_direction = -1
 			dir = 'left'
-			$Sprite2D.play('left')
+			if(is_on_floor()):
+				$Sprite2D.play('left')
+			elif(true):
+				if(Input.is_action_just_pressed("Up")):
+					$Sprite2D.play("jumpLeft")
+					print('jumpAnimationTriggered')
+					await $Sprite2D.animation_finished
+				elif(velocity.y <=0.0):
+					$Sprite2D.play('goingUpLeft')
+				else:
+					$Sprite2D.play('fallLeft')
 		elif Input.is_action_pressed("Right"):
 			x_direction = 1
 			dir = 'right'
-			$Sprite2D.play('right')
+			if(is_on_floor()):
+				$Sprite2D.play('right')
+			elif(true):
+				if(Input.is_action_just_pressed("Up")):
+					$Sprite2D.play("jumpRight")
+					print('jumpAnimationTriggered')
+					await $Sprite2D.animation_finished
+				elif(velocity.y <=0.0):
+					$Sprite2D.play('goingUpRight')
+				else:
+					$Sprite2D.play('fallRight')
+				
 		else:
 			x_direction = 0
 			if(dir == 'left'):
