@@ -7,4 +7,11 @@
 script = ExtResource("1_11itn")
 display_name = "dash"
 texture = ExtResource("2_xinpn")
+cardType = "movement"
+ableDash = true
+ableDoubleJump = false
+ableWallJump = false
+ableFire = false
+ableDagger = false
+ableSword = false
 metadata/_custom_type_script = "uid://oslmdvxnn3bx"

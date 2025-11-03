@@ -14,7 +14,7 @@ func _ready():
 	player = get_parent().get_node("Player")
 
 # Called every frame. 'delta' i	s the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if hp <= 0:
 		queue_free()
 	for body in $"Hit Box Area".get_overlapping_bodies():
