@@ -10,7 +10,7 @@ var iframe: bool = false
 var dir: String = 'right'
 var knockback: Vector2 = Vector2.ZERO
 var knockback_timer: float = 0.0
-const fireball = preload("res://player/fireball.tscn")
+
 
 
 # Dash
@@ -27,9 +27,13 @@ var canWallJump: bool = true
 
 # Fireball
 var canFire: bool = true
+const fireball = preload("res://player/fireball/fireball.tscn")
 
 # Dagger / Ghostly Darts
-var canDagger: bool = false
+var canDagger: bool = true
+const daggerZero = preload("res://player/dagger/daggerStraight.tscn")
+const daggerPos = preload("res://player/dagger/daggerPos.tscn")
+const daggerNeg = preload("res://player/dagger/daggerNeg.tscn")
 
 # Sword
 var canSword: bool = false
@@ -63,6 +67,7 @@ func _physics_process(delta: float) -> void:
 	knockBack(delta)
 	
 	fireBall()
+	dagger()
 	
 	move_and_slide()
 
@@ -196,13 +201,34 @@ func gravityCooldown(delta: float):
 
 func fireBall():
 	if Input.is_action_pressed("Attack") and $"fireball Cooldown".is_stopped() and canFire: # Check if player cooldown is over
-			$"fireball Cooldown".start()
-			var fire: AnimatedSprite2D = fireball.instantiate()
-			fire.position = position
-			
-			var target = get_global_mouse_position()
-			var Fdirection = (target - global_position).normalized()
-			
-			fire.direction = Fdirection
-			
-			get_tree().current_scene.add_child(fire) 
+		$"fireball Cooldown".start()
+		var fire: Area2D = fireball.instantiate()
+		fire.position = position
+		
+		var target = get_global_mouse_position()
+		var Fdirection = (target - global_position).normalized()
+		
+		fire.direction = Fdirection
+		
+		get_tree().current_scene.add_child(fire) 
+
+func dagger():
+	if Input.is_action_pressed("Attack") and $"dagger Cooldown".is_stopped() and canDagger:
+		$"dagger Cooldown".start()
+		var dag0: Area2D = daggerZero.instantiate()
+		dag0.position = position
+		var dagPos1: Area2D = daggerPos.instantiate()
+		dagPos1.position = position
+		var dagNeg1: Area2D = daggerNeg.instantiate()
+		dagNeg1.position = position
+		
+		var target = get_global_mouse_position()
+		var Ddirection = (target - global_position).normalized()
+		
+		dag0.direction = Ddirection
+		dagPos1.direction = Ddirection
+		dagNeg1.direction = Ddirection
+		
+		get_tree().current_scene.add_child(dag0)
+		get_tree().current_scene.add_child(dagPos1)
+		get_tree().current_scene.add_child(dagNeg1)
