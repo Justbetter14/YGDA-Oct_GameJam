@@ -14,3 +14,5 @@ func _process(delta: float) -> void:
 func _on_player_death() -> void:
 	print("Player Death Found")
 	PlayerDeath.emit()
+	for child in get_children():
+		queue_free()
