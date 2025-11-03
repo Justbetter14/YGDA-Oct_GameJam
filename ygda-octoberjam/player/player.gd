@@ -15,6 +15,8 @@ var dir: String = 'right'
 var knockback: Vector2 = Vector2.ZERO
 var knockback_timer: float = 0.0
 
+@export var currentCard : Card
+
 
 
 # Dash
@@ -62,6 +64,7 @@ func health_Update() -> void:
 func _physics_process(delta: float) -> void:
 	gravityCooldown(delta)
 	
+	
 	animation()
 	
 	doubleJump()
@@ -88,6 +91,8 @@ func dmg(num: int):
 
 func _on_dash_timer_timeout() -> void:
 	dashing = false
+	if(currentCard):
+		print(currentCard.display_name)
 	pass # Replace with function body.
 
 func _on_dash_cooldown_timeout() -> void:

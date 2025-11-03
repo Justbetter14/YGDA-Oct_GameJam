@@ -7,6 +7,6 @@ extends Control
 	#if player:
 		#for button in gridContainer.get_children():
 			#if button is CardButton:
-				#button.type = 
+				#player.currentCard = button.card
 
 		
