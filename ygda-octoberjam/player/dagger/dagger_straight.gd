@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed: int = 225
+var speed: int = 750
 @export var dmg: int = 100
 var direction: Vector2 = Vector2.RIGHT
 
@@ -8,6 +8,7 @@ var direction: Vector2 = Vector2.RIGHT
 func _ready() -> void:
 	direction = direction.normalized()
 	rotation = direction.angle()
+	$Timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
@@ -21,3 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 		print("enemyHit")
 		body.takeDmg(10) # Destroy the enemy
 		queue_free()
+
+
+func _on_timer_timeout() -> void:
+	queue_free()

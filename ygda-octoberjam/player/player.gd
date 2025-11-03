@@ -80,6 +80,7 @@ func _physics_process(delta: float) -> void:
 
 func die():
 	death.emit()
+	queue_free()
 
 func dmg(num: int):
 	print('triggered')
@@ -167,7 +168,7 @@ func animation():
 					await $Sprite2D.animation_finished
 				elif(velocity.y <=0.0):
 					$Sprite2D.play('goingUpLeft')
-				else:
+				else:	
 					$Sprite2D.play('fallLeft')
 		elif Input.is_action_pressed("Right"):
 			x_direction = 1
@@ -189,7 +190,7 @@ func animation():
 			if(dir == 'left'):
 				$Sprite2D.play('idleLeft')
 			if(dir == 'right'):
-				$Sprite2D.play('idleRight')			
+				$Sprite2D.play('idleRight')
 
 	if dashing:
 		if(dir == 'left'):
@@ -219,7 +220,7 @@ func fireBall():
 		
 		fire.direction = Fdirection
 		
-		get_tree().current_scene.add_child(fire) 
+		get_tree().current_scene.add_child(fire)
 
 func dagger():
 	if Input.is_action_pressed("Attack") and $"dagger Cooldown".is_stopped() and canDagger:
