@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceomlvywio1s5"]
+
+[ext_resource type="Script" uid="uid://dtby0jmdv8kyj" path="res://player/dagger/dagger_straight.gd" id="1_at8ej"]
+[ext_resource type="Texture2D" uid="uid://cesut87e0y8nq" path="res://assets/Dagger 0 Deg.png" id="1_t2ufb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2ufb"]
+size = Vector2(20, 7)
+
+[node name="DaggerStraight" type="Area2D"]
+script = ExtResource("1_at8ej")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_t2ufb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_t2ufb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,7 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://b42q40a55il1n"]
+[gd_scene load_steps=18 format=3 uid="uid://b42q40a55il1n"]
 
 [ext_resource type="Texture2D" uid="uid://x0ci5bqxlh6p" path="res://assets/Fireball.png" id="1_841cc"]
-[ext_resource type="Script" uid="uid://wc46t5gmeilc" path="res://player/fireball.gd" id="1_pev22"]
+[ext_resource type="Script" uid="uid://wc46t5gmeilc" path="res://player/fireball/fireball.gd" id="1_pev22"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y350i"]
+radius = 5.65685
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_841cc"]
+radius = 18.0278
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d74lv"]
 atlas = ExtResource("1_841cc")
@@ -51,7 +57,7 @@ region = Rect2(340, 0, 34, 14)
 atlas = ExtResource("1_841cc")
 region = Rect2(374, 0, 34, 14)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xvbk6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_y350i"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -91,17 +97,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_a1eo7")
 }],
 "loop": true,
-"name": &"flying",
-"speed": 5.0
+"name": &"default",
+"speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_841cc"]
-radius = 18.0278
-
-[node name="Fireball" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_xvbk6")
-animation = &"flying"
+[node name="Fireball" type="Area2D"]
 script = ExtResource("1_pev22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(12, 1)
+shape = SubResource("CircleShape2D_y350i")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -111,5 +116,8 @@ script = ExtResource("1_pev22")
 position = Vector2(12, 1)
 shape = SubResource("CircleShape2D_841cc")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y350i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
-[connection signal="body_entered" from="AOE" to="." method="_on_aoe_body_entered"]

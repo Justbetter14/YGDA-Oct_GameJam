@@ -256,6 +256,10 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
+[node name="dagger Cooldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="timeout" from="dashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="dashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="iFrame" to="." method="_on_i_frame_timeout"]
