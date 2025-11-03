@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var SPEED: int = 200
+var SPEED: int = 250
 const JUMP_POW: int = -600
 var x_direction: int = 0
 var max_health: int = 100
@@ -89,6 +89,8 @@ func doubleJump():
 		print(jumpCount)
 		jumpCount += 1
 		velocity.y = JUMP_POW
+	elif velocity.y < 0.0 and Input.is_action_just_released("Up"):
+		velocity.y *= 0.2
 
 func wallJump():
 	if Input.is_action_just_pressed("Up") and is_on_wall() and canWallJump == true:
