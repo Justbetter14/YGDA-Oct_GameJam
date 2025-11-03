@@ -22,6 +22,7 @@ var CurrentAttack: Card
 
 # Dash
 var canDash: bool = false
+var ableDash: bool = false
 var dashCD: bool = false
 var dashing: bool = false
 
@@ -137,13 +138,13 @@ func wallJump():
 
 func dash():
 	if Input.is_action_pressed("Dash"):
-		if (not dashCD) and canDash:
+		if (not dashCD) and ableDash and canDash:
 			$dashTimer.start()
 			$dashCooldown.start()
 			iframe = true
 			dashing = true
 			dashCD = true
-			canDash = false
+			ableDash = false
 		
 	if dashing:
 		SPEED = 550
@@ -211,7 +212,7 @@ func gravityCooldown(delta: float):
 			velocity.y = 0
 	
 	if is_on_floor():
-		canDash = true
+		ableDash = true
 		jumpCount = 0
 
 func fireBall():
