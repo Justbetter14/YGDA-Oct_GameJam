@@ -43,6 +43,8 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 func takeDmg(num: int):
 	hp -= num
+	if hp <= 0:
+		queue_free()
 
 func bite():
 	#player.dmg(dmg)

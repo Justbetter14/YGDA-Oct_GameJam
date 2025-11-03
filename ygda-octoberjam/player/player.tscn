@@ -230,7 +230,6 @@ frame_progress = 0.751833
 
 [node name="Platform Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0.171233, 0.357145)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_boad6")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
@@ -251,6 +250,10 @@ one_shot = true
 
 [node name="iFrame" type="Timer" parent="."]
 wait_time = 1.23
+one_shot = true
+
+[node name="fireball Cooldown" type="Timer" parent="."]
+wait_time = 0.2
 one_shot = true
 
 [connection signal="timeout" from="dashCooldown" to="." method="_on_dash_cooldown_timeout"]

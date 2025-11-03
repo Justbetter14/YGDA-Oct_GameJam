@@ -10,6 +10,8 @@ var iframe: bool = false
 var dir: String = 'right'
 var knockback: Vector2 = Vector2.ZERO
 var knockback_timer: float = 0.0
+const fireball = preload("res://player/fireball.tscn")
+
 
 # Dash
 var canDash: bool = true
@@ -22,6 +24,15 @@ var jumpCount: int = 0
 
 # Wall Jump
 var canWallJump: bool = true
+
+# Fireball
+var canFire: bool = true
+
+# Dagger / Ghostly Darts
+var canDagger: bool = false
+
+# Sword
+var canSword: bool = false
 
 signal death
 
@@ -50,6 +61,8 @@ func _physics_process(delta: float) -> void:
 	wallJump()
 	
 	knockBack(delta)
+	
+	fireBall()
 	
 	move_and_slide()
 
@@ -159,3 +172,18 @@ func gravityCooldown(delta: float):
 	if is_on_floor():
 		canDash = true
 		jumpCount = 0
+
+func fireBall():
+	if Input.is_action_pressed("Attack") and $"fireball Cooldown".is_stopped() and canFire: # Check if player cooldown is over
+			$"fireball Cooldown".start()
+			var fire: AnimatedSprite2D = fireball.instantiate()
+			fire.position = position
+			
+			if $Sprite2D.flip_h == true: # Check what way the player is facing
+				fire.x_direction = -1
+				print("-1")
+			else:
+				print("1")
+				fire.x_direction = 1
+			
+			get_tree().current_scene.add_child(fire) 
