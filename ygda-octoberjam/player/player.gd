@@ -4,7 +4,7 @@ var SPEED: int = 250
 const JUMP_POW: int = -600
 var x_direction: int = 0
 var max_health: int = 100
-var currHealth: int = 110
+var currHealth: int = 100
 @export var healthbar : ProgressBar;
 var iframe: bool = false
 var dir: String = 'right'
@@ -179,11 +179,9 @@ func fireBall():
 			var fire: AnimatedSprite2D = fireball.instantiate()
 			fire.position = position
 			
-			if $Sprite2D.flip_h == true: # Check what way the player is facing
-				fire.x_direction = -1
-				print("-1")
-			else:
-				print("1")
-				fire.x_direction = 1
+			var target = get_global_mouse_position()
+			var Fdirection = (target - global_position).normalized()
+			
+			fire.direction = Fdirection
 			
 			get_tree().current_scene.add_child(fire) 
