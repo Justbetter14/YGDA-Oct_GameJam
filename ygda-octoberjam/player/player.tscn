@@ -370,11 +370,10 @@ wait_time = 1.23
 one_shot = true
 
 [node name="fireball Cooldown" type="Timer" parent="."]
-wait_time = 0.2
 one_shot = true
 
 [node name="dagger Cooldown" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.33
 one_shot = true
 
 [connection signal="timeout" from="dashCooldown" to="." method="_on_dash_cooldown_timeout"]

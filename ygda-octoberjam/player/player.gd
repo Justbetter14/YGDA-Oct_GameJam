@@ -48,7 +48,6 @@ var canSword: bool = false
 
 signal death
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	healthbar.max_value = max_health
 	print(healthbar.max_value)
@@ -62,7 +61,6 @@ func health_Update() -> void:
 		healthbar.value = currHealth
 		print(healthbar.value)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	gravityCooldown(delta)
 	
@@ -79,6 +77,7 @@ func _physics_process(delta: float) -> void:
 	dagger()
 	
 	cardDetect()
+	pickupCard()
 	
 	move_and_slide()
 
@@ -207,7 +206,7 @@ func animation():
 func gravityCooldown(delta: float):
 	if not is_on_floor():
 		if not dashing:
-			velocity += get_gravity() * delta
+			velocity += get_gravity() * delta * 1.5
 		else:
 			velocity.y = 0
 	
@@ -286,31 +285,51 @@ func dagger():
 		get_tree().current_scene.add_child(dagNeg1)
 
 func cardDetect():
-	if (currentCard):
-		var currentButton: Button = null
-		
-		if currentCard.texture == $"../CanvasLayer/Inventory/GridContainer/cardButton1".icon:
-			currentButton = $"../CanvasLayer/Inventory/GridContainer/cardButton1"
-		elif currentCard.texture == $"../CanvasLayer/Inventory/GridContainer/cardButton2".icon:
-			currentButton = $"../CanvasLayer/Inventory/GridContainer/cardButton2"
-		elif currentCard.texture == $"../CanvasLayer/Inventory/GridContainer/cardButton3".icon:
-			currentButton = $"../CanvasLayer/Inventory/GridContainer/cardButton3"
-		
-		if currentButton != null:
-			if currentCard.cardType == 'attack':
-				CurrentAttack = currentCard
-				canFire = CurrentAttack.ableFire
-				canDagger = CurrentAttack.ableDagger
-				canSword = CurrentAttack.ableSword
-				currentCard = emptyCard
-				
-				print(CurrentAttack.display_name)
-			if currentCard.cardType == 'movement':
-				CurrentMove = currentCard
-				canDash = CurrentMove.ableDash
-				canDoubleJump = CurrentMove.ableDoubleJump
-				canWallJump = CurrentMove.ableWallJump
-				currentCard = emptyCard
-				print(CurrentMove.display_name)
-			
-			currentButton.icon = emptyCard.texture
+	var currentButton1: Button = $"../CanvasLayer/Inventory/GridContainer/cardButton1"
+	var currentButton2: Button = $"../CanvasLayer/Inventory/GridContainer/cardButton2"
+	var currentButton3: Button = $"../CanvasLayer/Inventory/GridContainer/cardButton3"
+	
+	if Input.is_action_pressed("Hotkey 1"):
+		if currentButton1.icon != emptyCard.texture:
+			useCard(currentButton1)
+	if Input.is_action_pressed("Hotkey 2"):
+		if currentButton2.icon != emptyCard.texture:
+			useCard(currentButton2)
+	if Input.is_action_pressed("Hotkey 3"):
+		if currentButton3.icon != emptyCard.texture:
+			useCard(currentButton3)
+
+func useCard(currentButton: Button):
+	var type: Card
+	var cardsList = [preload("res://Cards/Resources/daggerCard.tres"), preload("res://Cards/Resources/dashCard.tres"), preload("res://Cards/Resources/fireballCard.tres"), preload("res://Cards/Resources/swordCard.tres")]
+	for card in cardsList:
+		if card.texture == currentButton.icon:
+			type = card
+	if type.cardType == 'attack':
+		CurrentAttack = type
+		canFire = CurrentAttack.ableFire
+		canDagger = CurrentAttack.ableDagger
+		canSword = CurrentAttack.ableSword
+		print(CurrentAttack.display_name)
+	if type.cardType == 'movement':
+		CurrentMove = type
+		canDash = CurrentMove.ableDash
+		canDoubleJump = CurrentMove.ableDoubleJump
+		canWallJump = CurrentMove.ableWallJump
+		print(CurrentMove.display_name)
+
+	currentButton.icon = emptyCard.texture
+
+func pickupCard():
+	var currentButton: Button = null
+	if emptyCard.texture == $"../CanvasLayer/Inventory/GridContainer/cardButton1".icon:
+		currentButton = $"../CanvasLayer/Inventory/GridContainer/cardButton1"
+	elif emptyCard.texture == $"../CanvasLayer/Inventory/GridContainer/cardButton2".icon:
+		currentButton = $"../CanvasLayer/Inventory/GridContainer/cardButton2"
+	elif emptyCard.texture == $"../CanvasLayer/Inventory/GridContainer/cardButton3".icon:
+		currentButton = $"../CanvasLayer/Inventory/GridContainer/cardButton3"
+	
+	if currentButton != null:
+		if Input.is_action_just_pressed("Select"):
+			currentCard = load("res://Cards/Resources/swordCard.tres")
+			currentButton.icon = currentCard.texture
