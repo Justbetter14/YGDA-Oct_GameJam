@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://blhmbjqylc0"]
 
 [ext_resource type="Script" uid="uid://g4rcn8p07gqk" path="res://main/world.gd" id="1_cadw0"]
-[ext_resource type="PackedScene" uid="uid://cagirvs1kuwi7" path="res://main/main.tscn" id="2_sdvrk"]
+[ext_resource type="PackedScene" uid="uid://cagirvs1kuwi7" path="res://main/level1.tscn" id="2_sdvrk"]
 
 [sub_resource type="FontFile" id="FontFile_cadw0"]
 cache/0/16/0/ascent = 0.0
@@ -17,7 +17,7 @@ font_color = Color(0, 0, 0, 1)
 [node name="World" type="Node2D"]
 script = ExtResource("1_cadw0")
 
-[node name="Main" parent="." instance=ExtResource("2_sdvrk")]
+[node name="Level1" parent="." instance=ExtResource("2_sdvrk")]
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -56,4 +56,4 @@ vertical_alignment = 1
 
 [node name="RetryCamera" type="Camera2D" parent="."]
 
-[connection signal="PlayerDeath" from="Main" to="." method="_on_main_player_death"]
+[connection signal="PlayerDeath" from="Level1" to="." method="_on_level_1_player_death"]
