@@ -25,6 +25,7 @@ window/stretch/mode="viewport"
 
 player="read the title"
 enemy="for stuff that affect all enemies"
+attack=""
 
 [input]
 

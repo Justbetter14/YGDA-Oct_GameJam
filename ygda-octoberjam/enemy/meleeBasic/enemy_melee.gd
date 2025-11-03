@@ -27,7 +27,6 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		$Sprite2D.play("Idle")
 
-
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		shouldMove = false
@@ -43,6 +42,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 func takeDmg(num: int):
 	hp -= num
+	print("Oh No I been Hit! * Dun Dun DUN *")
 	if hp <= 0:
 		queue_free()
 
@@ -60,11 +60,6 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		shouldMove = true
 
-#func _on_hit_box_area_body_entered(body: Node2D) -> void:
-	#if body.is_in_group("player"):
-		#var knockbackDirection = (body.global_position - global_position).normalized()
-		#body.applyKnockback(knockbackDirection, 150.0, 0.2, dmg)
-
 func _on_attack_timer_timeout() -> void:
 	for body in $"Attack Area".get_overlapping_bodies():
 		if body.is_in_group("player"):
@@ -72,3 +67,8 @@ func _on_attack_timer_timeout() -> void:
 				bite()
 				shouldMove = true
 				$"Attack Cooldown".start()
+
+func _on_hit_box_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("attack"):
+		print("Attack Contact")
+		takeDmg(area.dmg)

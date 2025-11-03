@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2ufb"]
 size = Vector2(20, 7)
 
-[node name="DaggerStraight" type="Area2D"]
+[node name="DaggerStraight" type="Area2D" groups=["attack"]]
 script = ExtResource("1_at8ej")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
