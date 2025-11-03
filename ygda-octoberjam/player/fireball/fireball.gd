@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Fireball
+
 var speed: int = 200
 @export var dmg: int = 100
 var direction: Vector2 = Vector2.RIGHT
@@ -17,9 +19,9 @@ func _physics_process(delta: float):
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
-func _on_body_entered(body: CharacterBody2D) -> void:
-	for body2 in $AOE.get_overlapping_bodies():
-		if body2.is_in_group("enemy"):
+func aoe():
+	for area2 in $AOE.get_overlapping_areas():
+		if area2.is_in_group("enemy"):
 			print("enemyHit")
-			body2.takeDmg(10) # Destroy the enemy
-			queue_free()
+			area2.takeDmg(10) # Destroy the enemy
+	queue_free()

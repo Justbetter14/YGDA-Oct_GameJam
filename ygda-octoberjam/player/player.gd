@@ -215,8 +215,22 @@ func fireBall():
 		var fire: Area2D = fireball.instantiate()
 		fire.position = position
 		
-		var target = get_global_mouse_position()
-		var Fdirection = (target - global_position).normalized()
+		var Fdirection: Vector2
+		
+		if dir == 'right':
+			if Input.is_action_pressed("Aiming Up"):
+				Fdirection = Vector2.RIGHT.rotated(deg_to_rad(-45))
+			elif Input.is_action_pressed("Aiming Down"):
+				Fdirection = Vector2.RIGHT.rotated(deg_to_rad(+45))
+			else:
+				Fdirection = Vector2.RIGHT
+		elif dir == 'left':
+			if Input.is_action_pressed("Aiming Up"):
+				Fdirection = Vector2.LEFT.rotated(deg_to_rad(+45))
+			elif Input.is_action_pressed("Aiming Down"):
+				Fdirection = Vector2.LEFT.rotated(deg_to_rad(-45))
+			else:
+				Fdirection = Vector2.LEFT
 		
 		fire.direction = Fdirection
 		
