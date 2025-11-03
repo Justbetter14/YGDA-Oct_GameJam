@@ -7,7 +7,7 @@ extends Button
 	set(card_to_slot):
 		card = card_to_slot
 		icon = card.texture
-		
+
 var type: Card
 
 func _ready():

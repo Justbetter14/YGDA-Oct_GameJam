@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://dh1sxe8310w6b"]
+
+[ext_resource type="Script" uid="uid://oslmdvxnn3bx" path="res://Cards/Resources/card.gd" id="1_43ofv"]
+[ext_resource type="Texture2D" uid="uid://cl4ka6uhx81mx" path="res://assets/trishot.png" id="2_368yw"]
+
+[resource]
+script = ExtResource("1_43ofv")
+display_name = "dagger"
+texture = ExtResource("2_368yw")
+cardType = "attack"
+ableDash = false
+ableDoubleJump = false
+ableWallJump = false
+ableFire = false
+ableDagger = true
+ableSword = false

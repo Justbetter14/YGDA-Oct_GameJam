@@ -16,8 +16,8 @@ var knockback: Vector2 = Vector2.ZERO
 var knockback_timer: float = 0.0
 
 @export var currentCard : Card
-
-
+var CurrentMove: Card
+var CurrentAttack: Card
 
 # Dash
 var canDash: bool = true
@@ -76,6 +76,8 @@ func _physics_process(delta: float) -> void:
 	fireBall()
 	dagger()
 	
+	cardDetect()
+	
 	move_and_slide()
 
 func die():
@@ -92,6 +94,7 @@ func dmg(num: int):
 
 func _on_dash_timer_timeout() -> void:
 	dashing = false
+	iframe = false
 	if(currentCard):
 		print(currentCard.display_name)
 	pass # Replace with function body.
@@ -104,13 +107,13 @@ func _on_i_frame_timeout() -> void:
 	iframe = false
 	pass # Replace with function body.
 
-func applyKnockback(direction: Vector2, force: float, knockbackDuration: float, dmg: int) -> void:
+func applyKnockback(direction: Vector2, force: float, knockbackDuration: float, damage: int) -> void:
 	print(iframe)
 	if iframe == false:
 		print('yay')
 		knockback = direction*force
 		knockback_timer = knockbackDuration
-		dmg(dmg)
+		dmg(damage)
 
 func doubleJump():
 	if Input.is_action_just_pressed("Up") and (is_on_floor() or (canDoubleJump == true and jumpCount < 2)):
@@ -136,6 +139,7 @@ func dash():
 		if(not dashCD) and canDash:
 			$dashTimer.start()
 			$dashCooldown.start()
+			iframe = true
 			dashing = true
 			dashCD = true
 			canDash = false
@@ -278,3 +282,18 @@ func dagger():
 		get_tree().current_scene.add_child(dag0)
 		get_tree().current_scene.add_child(dagPos1)
 		get_tree().current_scene.add_child(dagNeg1)
+
+func cardDetect():
+	if (currentCard):
+		if currentCard.cardType == 'attack':
+			CurrentAttack = currentCard
+			canFire = CurrentAttack.ableFire
+			canDagger = CurrentAttack.ableDagger
+			canSword = CurrentAttack.ableSword
+			print(CurrentAttack.display_name)
+		if currentCard.cardType == 'movement':
+			CurrentMove = currentCard
+			canDash = CurrentMove.ableDash
+			canDoubleJump = CurrentMove.ableDoubleJump
+			canWallJump = CurrentMove.ableWallJump
+			print(CurrentMove.display_name)

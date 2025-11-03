@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://x3udhhmqxll7"]
+
+[ext_resource type="Script" uid="uid://oslmdvxnn3bx" path="res://Cards/Resources/card.gd" id="1_mp2gv"]
+[ext_resource type="Texture2D" uid="uid://ctuhvpvruh6dd" path="res://assets/Sword.png" id="2_jxdp7"]
+
+[resource]
+script = ExtResource("1_mp2gv")
+display_name = "sword"
+texture = ExtResource("2_jxdp7")
+cardType = "attack"
+ableDash = false
+ableDoubleJump = false
+ableWallJump = false
+ableFire = false
+ableDagger = false
+ableSword = true

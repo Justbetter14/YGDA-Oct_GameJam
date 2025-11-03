@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://jcyknvko3eux"]
+
+[ext_resource type="Script" uid="uid://oslmdvxnn3bx" path="res://Cards/Resources/card.gd" id="1_trk6o"]
+[ext_resource type="Texture2D" uid="uid://cjhm4oe42kkkt" path="res://assets/FlameOn.png" id="2_ifb4n"]
+
+[resource]
+script = ExtResource("1_trk6o")
+display_name = "fireball"
+texture = ExtResource("2_ifb4n")
+cardType = "attack"
+ableDash = false
+ableDoubleJump = false
+ableWallJump = false
+ableFire = true
+ableDagger = false
+ableSword = false

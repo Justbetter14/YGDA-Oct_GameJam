@@ -30,7 +30,7 @@ separation = Vector2i(1, 1)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_67ri8")
 
-[node name="Main" type="Node2D"]
+[node name="Level1" type="Node2D"]
 script = ExtResource("1_67ri8")
 
 [node name="Player" parent="." instance=ExtResource("1_0wfyh")]
