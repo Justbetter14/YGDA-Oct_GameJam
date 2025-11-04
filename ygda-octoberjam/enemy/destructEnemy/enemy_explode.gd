@@ -23,64 +23,22 @@ var shouldMove: bool = true
 #endregion
 
 #region Damage Variables
-var dmg: int = 10
-var canBite: bool = true
+var dmg: int = 100
 #endregion
 
-func _ready():
+func _ready() -> void:
 	player = get_parent().get_node("Player")
 	randomize()
 
 func _physics_process(_delta: float) -> void:
 	if hp <= 0:
 		die()
-	if shouldMove == true:
+	if shouldMove:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = SPEED * direction
 		move_and_slide()
-		$Sprite2D.play("Idle")
 
-#region Attack & Movement Functions
-func _on_attack_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		shouldMove = false
-		$Sprite2D.play("Bite1")
-		await $Sprite2D.animation_finished
-		$Sprite2D.play("Bite2")
-		#$attackTimer.start()
-		if canBite:
-			bite()
-			shouldMove = true
-			$"Attack Cooldown".start()
-
-func bite():
-	#player.dmg(dmg)
-	var knockbackDirection = (player.global_position - global_position).normalized()
-	player.applyKnockback(knockbackDirection, 400, 0.2, dmg)
-	$Sprite2D.play("Idle")
-
-func _on_attack_cooldown_timeout() -> void:
-	$"Attack Cooldown".stop()
-	canBite = true
-
-func _on_attack_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		shouldMove = true
-
-func _on_attack_timer_timeout() -> void:
-	for body in $"Attack Area".get_overlapping_bodies():
-		if body.is_in_group("player"):
-			shouldMove = false
-			$Sprite2D.play("Bite1")
-			await $Sprite2D.animation_finished
-			$Sprite2D.play("Bite2")
-			if canBite:
-				bite()
-				shouldMove = true
-				$"Attack Cooldown".start()
-#endregion
-
-#region Hurt & Collision Functions
+#region Collision & Hurt Functions
 func _on_hit_box_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("attack"):
 		print("Print Projectivle Contatatstc")
@@ -103,14 +61,13 @@ func _on_hit_box_area_body_entered(body: Node2D) -> void:
 
 func takeDmg(num: int):
 	hp -= num
-	print("Oh No I been Hit! * Dun Dun DUN *")
+	print("sad no explodey")
 	if hp <= 0:
 		die()
 
 func die():
 	cardDraw(global_position)
 	queue_free()
-#endregion
 
 func cardDraw(pos: Vector2):
 	if cardGiven:
@@ -129,3 +86,24 @@ func cardDraw(pos: Vector2):
 	get_parent().add_child(instance)
 	
 	cardGiven = true
+#endregion
+
+#region Attack Functions
+func _on_explosion_detection_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		$Startup.start()
+		shouldMove = false
+
+func _on_explosion_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		var knockbackDirection = (player.global_position - global_position).normalized()
+		player.applyKnockback(knockbackDirection, 600, 0.3, dmg)
+		die()
+
+func _on_startup_timeout() -> void:
+	if player in $"Explosion Detection".get_overlapping_bodies():
+		$"Explosion Area".monitoring = true
+	else:
+		shouldMove = true
+		$"Explosion Area".monitoring = false
+#endregion

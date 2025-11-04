@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://dh2pdnxxd735x"]
+
+[ext_resource type="Script" uid="uid://b0objrvc16brb" path="res://enemy/destructEnemy/enemy_explode.gd" id="1_npic7"]
+[ext_resource type="Texture2D" uid="uid://0tfqaln2w7cl" path="res://icon.svg" id="2_l6du5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_npic7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eowsw"]
+radius = 28.0179
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6du5"]
+radius = 84.0952
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x8yqw"]
+radius = 140.004
+
+[node name="EnemyExplode" type="CharacterBody2D"]
+script = ExtResource("1_npic7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_npic7")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_l6du5")
+
+[node name="Hit Box Area" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit Box Area"]
+shape = SubResource("CircleShape2D_eowsw")
+
+[node name="Explosion Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion Detection"]
+shape = SubResource("CircleShape2D_l6du5")
+
+[node name="Explosion Area" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion Area"]
+shape = SubResource("CircleShape2D_x8yqw")
+
+[node name="Startup" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="Hit Box Area" to="." method="_on_hit_box_area_area_entered"]
+[connection signal="body_entered" from="Hit Box Area" to="." method="_on_hit_box_area_body_entered"]
+[connection signal="body_entered" from="Explosion Detection" to="." method="_on_explosion_detection_body_entered"]
+[connection signal="body_entered" from="Explosion Area" to="." method="_on_explosion_area_body_entered"]
+[connection signal="timeout" from="Startup" to="." method="_on_startup_timeout"]
