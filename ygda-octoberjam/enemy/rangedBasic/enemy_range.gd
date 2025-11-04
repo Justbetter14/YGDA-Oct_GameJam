@@ -24,6 +24,7 @@ const dashCard: Card = preload("res://Cards/Resources/dashCard.tres")
 const fireCard: Card = preload("res://Cards/Resources/fireballCard.tres")
 const swordCard: Card = preload("res://Cards/Resources/swordCard.tres")
 @export var cardsList = [daggerCard, dashCard, fireCard, swordCard]
+var cardGiven: bool = false
 #endregion
 
 func _ready():
@@ -110,6 +111,9 @@ func die():
 #endregion
 
 func cardDraw(pos: Vector2):
+	if cardGiven:
+		return
+	
 	var randInt = randi() % 100
 	
 	if randInt > cardChance:
@@ -121,3 +125,5 @@ func cardDraw(pos: Vector2):
 	instance.card = card
 	instance.global_position = pos
 	get_parent().add_child(instance)
+	
+	cardGiven = true

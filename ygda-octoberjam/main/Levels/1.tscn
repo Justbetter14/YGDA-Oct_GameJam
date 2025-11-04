@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=4 uid="uid://bjplhrs4ucwit"]
+[gd_scene load_steps=11 format=4 uid="uid://bjplhrs4ucwit"]
 
 [ext_resource type="PackedScene" uid="uid://cjlcrnnsc4lag" path="res://player/player.tscn" id="1_asigu"]
 [ext_resource type="Script" uid="uid://jbe4guyh0o6p" path="res://main/Levels/1.gd" id="1_xh1pp"]
 [ext_resource type="Script" uid="uid://sbp33s7p500q" path="res://main/void.gd" id="2_xh1pp"]
-[ext_resource type="PackedScene" uid="uid://do6q0l3lyweuk" path="res://enemy/meleeBasic/enemy_melee.tscn" id="3_cwyg7"]
 [ext_resource type="PackedScene" uid="uid://cufo1evpompqv" path="res://intoTheDungeonPlayer.tscn" id="4_m5p3n"]
 [ext_resource type="Texture2D" uid="uid://c7xhn1sog3afo" path="res://assets/dungeonTileset.png" id="5_r5rtk"]
 [ext_resource type="PackedScene" uid="uid://cm6oop1vqlltf" path="res://inventory/inventory.tscn" id="6_f6dko"]
@@ -52,9 +51,6 @@ script = ExtResource("2_xh1pp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Void"]
 shape = SubResource("WorldBoundaryShape2D_d6kdu")
-
-[node name="EnemyMelee" parent="." instance=ExtResource("3_cwyg7")]
-position = Vector2(-413, -518)
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("4_m5p3n")]
 volume_db = -24.36

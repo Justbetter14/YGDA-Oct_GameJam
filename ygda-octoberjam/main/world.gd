@@ -12,17 +12,14 @@ func _unhandled_input(event):
 		# This restarts the current scene.
 		get_tree().reload_current_scene()
 
-func _on_level_1_player_death() -> void:
-	print("World Found Player Death")
-	$Level1.hide()
-	$UserInterface/Retry.show()
-	$RetryCamera.make_current()
-
-
 func nextLevel():
 	var temp1 = str("res://main/Levels/",currentLevel,".tscn")
 	remove_child(get_node(str(currentLevel))) 
 	currentLevel+=1
 	var temp = str("res://main/Levels/",currentLevel,".tscn")
 	add_child(load(temp).instantiate())
-	
+
+func _on_playerdeathfinderer_death() -> void:
+	print("World Found Player Death")
+	$UserInterface/Retry.show()
+	$RetryCamera.make_current()
