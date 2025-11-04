@@ -372,6 +372,9 @@ func sword():
 func rightSlash():
 	$"Right Slash".monitoring = true
 	$"Right Slash".monitorable = true
+	$Sprite2D.flip_h = false
+	$Sprite2D.play("swordSlash")
+	await $Sprite2D.animation_finished
 	await get_tree().create_timer(0.2).timeout
 	$"Right Slash".monitoring = false
 	$"Right Slash".monitorable = false
@@ -379,6 +382,10 @@ func rightSlash():
 func leftSlash():
 	$"Left Slash".monitoring = true
 	$"Left Slash".monitorable = true
+	$Sprite2D.flip_h = true
+	$Sprite2D.play("swordSlash")
+	await $Sprite2D.animation_finished
+	$Sprite2D.flip_h = false
 	await get_tree().create_timer(0.2).timeout
 	$"Left Slash".monitoring = false
 	$"Left Slash".monitorable = false
