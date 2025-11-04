@@ -91,7 +91,6 @@ func _physics_process(delta: float) -> void:
 	sword()
 	
 	cardDetect()
-	pickupCard()
 	
 	move_and_slide()
 
@@ -290,6 +289,12 @@ func fireBall():
 		elif Input.is_action_pressed("Aiming Down"):
 			Fdirection = Vector2.DOWN
 		
+		if Fdirection == Vector2.ZERO:
+			if dir == 'right':
+				Fdirection = Vector2.RIGHT
+			elif dir == 'left':
+				Fdirection = Vector2.LEFT
+		
 		fire.direction = Fdirection
 		
 		get_tree().current_scene.add_child(fire)
@@ -324,6 +329,12 @@ func dagger():
 			Ddirection = Vector2.UP
 		elif Input.is_action_pressed("Aiming Down"):
 			Ddirection = Vector2.DOWN
+		
+		if Ddirection == Vector2.ZERO:
+			if dir == 'right':
+				Ddirection = Vector2.RIGHT
+			elif dir == 'left':
+				Ddirection = Vector2.LEFT
 		
 		dag0.direction = Ddirection
 		dagPos1.direction = Ddirection
@@ -410,7 +421,10 @@ func useCard(currentButton: Button):
 
 	currentButton.icon = emptyCard.texture
 
-func pickupCard():
+func _on_pick_up_radius_area_entered(area: Area2D) -> void:
+	if not area.is_in_group("cards"):
+		return
+	
 	var currentButton: Button = null
 	if emptyCard.texture == $"../CanvasLayer/Inventory/GridContainer/cardButton1".icon:
 		currentButton = $"../CanvasLayer/Inventory/GridContainer/cardButton1"
@@ -422,7 +436,8 @@ func pickupCard():
 	if currentButton == null:
 		return
 	
-	if Input.is_action_just_pressed("Select"):
-		currentCard = swordCard
-		currentButton.icon = currentCard.texture
+	var texture = area.get_parent().card.texture
+	if texture != null:
+		currentButton.icon = texture
+		area.get_parent().queue_free()
 #endregion

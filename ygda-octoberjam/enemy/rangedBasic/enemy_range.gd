@@ -16,12 +16,22 @@ var dmg: int = 10
 var bulletScene = preload("res://enemy/projectile/bullet.tscn")
 #endregion
 
+#region Card Variables
+@export var cardChance: int = 33
+var cardScene = preload("res://Cards/Resources/cards.tscn")
+const daggerCard: Card = preload("res://Cards/Resources/daggerCard.tres")
+const dashCard: Card = preload("res://Cards/Resources/dashCard.tres")
+const fireCard: Card = preload("res://Cards/Resources/fireballCard.tres")
+const swordCard: Card = preload("res://Cards/Resources/swordCard.tres")
+@export var cardsList = [daggerCard, dashCard, fireCard, swordCard]
+#endregion
+
 func _ready():
 	player = get_parent().get_node("Player")
 
 func _physics_process(_delta: float) -> void:
 	if hp <= 0:
-		queue_free()
+		die()
 	
 	if shouldMove:
 		var direction = (player.global_position - global_position).normalized()
@@ -44,13 +54,13 @@ func _on_bullet_cooldown_timeout() -> void:
 	canShoot = true
 
 func shoot():
-#endregion
 	var instance = bulletScene.instantiate()
 	instance.global_position = $Marker2D.global_position
 	instance.direction = (player.global_position - global_position).normalized()
 	get_parent().add_child(instance)
 	$"Bullet Cooldown".start()
 	canShoot = false
+#endregion
 
 #region Movement Functions
 func _on_attack_area_body_entered(body: Node2D) -> void:
@@ -93,4 +103,21 @@ func _on_hit_box_area_area_entered(area: Area2D) -> void:
 		else:
 			print("Sword")
 			takeDmg(player.Strength)
+
+func die():
+	cardDraw(global_position)
+	queue_free()
 #endregion
+
+func cardDraw(pos: Vector2):
+	var randInt = randi() % 100
+	
+	if randInt > cardChance:
+		return
+	
+	var card = cardsList.pick_random()
+	
+	var instance = cardScene.instantiate()
+	instance.card = card
+	instance.global_position = pos
+	get_parent().add_child(instance)

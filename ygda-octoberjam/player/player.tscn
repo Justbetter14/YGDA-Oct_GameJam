@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cjlcrnnsc4lag"]
+[gd_scene load_steps=50 format=3 uid="uid://cjlcrnnsc4lag"]
 
 [ext_resource type="Script" uid="uid://dflmp7ykxx0ki" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://7x1tmw8jjtsq" path="res://assets/player_dash_left.png" id="2_boad6"]
@@ -331,6 +331,9 @@ size = Vector2(9.93151, 26.8367)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkbax"]
 bg_color = Color(0, 1, 0, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hg6s5"]
+radius = 53.4341
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("healthbar") groups=["player"]]
 scale = Vector2(2.92, 1.96)
 safe_margin = 0.14
@@ -400,6 +403,12 @@ position = Vector2(5, 0)
 scale = Vector2(1.5, 1.25)
 polygon = PackedVector2Array(-9.93151, 12.2449, -9.24657, -21.9388, 7.53425, -34.1837, 13.6986, -47.9592, -10.6164, -38.7755, -21.5753, -26.5306, -21.9178, 11.7347)
 
+[node name="Pick Up Radius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pick Up Radius"]
+shape = SubResource("CircleShape2D_hg6s5")
+
 [connection signal="timeout" from="dashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="dashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="iFrame" to="." method="_on_i_frame_timeout"]
+[connection signal="area_entered" from="Pick Up Radius" to="." method="_on_pick_up_radius_area_entered"]
