@@ -383,7 +383,6 @@ one_shot = true
 one_shot = true
 
 [node name="Right Slash" type="Area2D" parent="." groups=["attack"]]
-scale = Vector2(1, 1)
 monitoring = false
 monitorable = false
 
