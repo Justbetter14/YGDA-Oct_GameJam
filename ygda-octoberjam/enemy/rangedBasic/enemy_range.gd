@@ -31,6 +31,7 @@ var cardGiven: bool = false
 
 func _ready():
 	player = get_parent().get_node("Player")
+	randomize()
 
 func _physics_process(_delta: float) -> void:
 	if hp <= 0:
