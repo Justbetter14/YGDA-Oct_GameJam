@@ -14,7 +14,7 @@ radius = 84.0952
 [sub_resource type="CircleShape2D" id="CircleShape2D_x8yqw"]
 radius = 140.004
 
-[node name="EnemyExplode" type="CharacterBody2D"]
+[node name="EnemyExplode" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_npic7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -25,9 +25,9 @@ disabled = true
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_l6du5")
 
-[node name="Hit Box Area" type="Area2D" parent="." groups=["enemy"]]
+[node name="Hit Box Area" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit Box Area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit Box Area" groups=["enemy"]]
 shape = SubResource("CircleShape2D_eowsw")
 
 [node name="Explosion Detection" type="Area2D" parent="."]
