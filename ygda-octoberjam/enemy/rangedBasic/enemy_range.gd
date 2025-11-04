@@ -67,8 +67,11 @@ func _on_hit_box_area_area_entered(area: Area2D) -> void:
 		if area is Fireball:
 			print("Fire Hit")
 			area.aoe()
-			area.queue_free()
+			takeDmg(area.dmg)
 		if area is Dagger0 or area is Dagger1 or area is Dagger2:
 			print("Dagger Hit")
 			area.queue_free()
-		takeDmg(area.dmg)
+			takeDmg(area.dmg)
+		else:
+			print("Sword")
+			takeDmg(player.Strength)

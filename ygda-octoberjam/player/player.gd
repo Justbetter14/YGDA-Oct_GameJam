@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Jump & Speed Related
 var SPEED: int = 250
-const JUMP_POW: int = -600
+const JUMP_POW: int = -700
 var x_direction: int = 0
 
 # Health Related
@@ -33,6 +33,10 @@ var jumpCount: int = 0
 # Wall Jump
 var canWallJump: bool = false
 
+# Basic
+var canBasic: bool = true
+var ableBasic: bool = true
+
 # Fireball
 var canFire: bool = false
 const fireball = preload("res://player/fireball/fireball.tscn")
@@ -45,6 +49,8 @@ const daggerNeg = preload("res://player/dagger/daggerNeg.tscn")
 
 # Sword
 var canSword: bool = false
+var ableSword: bool = true
+@export var Strength: int = 100
 
 signal death
 
@@ -73,8 +79,10 @@ func _physics_process(delta: float) -> void:
 	
 	knockBack(delta)
 	
+	basic()
 	fireBall()
 	dagger()
+	sword()
 	
 	cardDetect()
 	pickupCard()
@@ -214,6 +222,29 @@ func gravityCooldown(delta: float):
 		ableDash = true
 		jumpCount = 0
 
+func basic():
+	if Input.is_action_pressed("Attack") and $"basic Cooldown".is_stopped() and canBasic and ableBasic:
+		$"basic Cooldown".start()
+		ableBasic = false
+		print("Attack /w basic")
+		
+		if dir == 'right':
+			print("Bsaic Right")
+			$"Right Slash".monitoring = true
+			$"Right Slash".monitorable = true
+			await get_tree().create_timer(0.2).timeout
+			$"Right Slash".monitoring = false
+			$"Right Slash".monitorable = false
+		elif dir == 'left':
+			print("bsaic Left")
+			$"Left Slash".monitoring = true
+			$"Left Slash".monitorable = true
+			await get_tree().create_timer(0.2).timeout
+			$"Left Slash".monitoring = false
+			$"Left Slash".monitorable = false
+		
+		ableBasic = true
+
 func fireBall():
 	if Input.is_action_pressed("Attack") and $"fireball Cooldown".is_stopped() and canFire: # Check if player cooldown is over
 		$"fireball Cooldown".start()
@@ -284,6 +315,29 @@ func dagger():
 		get_tree().current_scene.add_child(dagPos1)
 		get_tree().current_scene.add_child(dagNeg1)
 
+func sword():
+	if Input.is_action_pressed("Attack") and $"sword Cooldown".is_stopped() and canSword and ableSword:
+		$"sword Cooldown".start()
+		ableSword = false
+		print("Attack /w swordddd")
+		
+		if dir == 'right':
+			print("Sowrdd Right")
+			$"Right Slash".monitoring = true
+			$"Right Slash".monitorable = true
+			await get_tree().create_timer(0.2).timeout
+			$"Right Slash".monitoring = false
+			$"Right Slash".monitorable = false
+		elif dir == 'left':
+			print("Sowrdd Left")
+			$"Left Slash".monitoring = true
+			$"Left Slash".monitorable = true
+			await get_tree().create_timer(0.2).timeout
+			$"Left Slash".monitoring = false
+			$"Left Slash".monitorable = false
+		
+		ableSword = true
+
 func cardDetect():
 	var currentButton1: Button = $"../CanvasLayer/Inventory/GridContainer/cardButton1"
 	var currentButton2: Button = $"../CanvasLayer/Inventory/GridContainer/cardButton2"
@@ -307,6 +361,7 @@ func useCard(currentButton: Button):
 			type = card
 	if type.cardType == 'attack':
 		CurrentAttack = type
+		canBasic = false
 		canFire = CurrentAttack.ableFire
 		canDagger = CurrentAttack.ableDagger
 		canSword = CurrentAttack.ableSword
