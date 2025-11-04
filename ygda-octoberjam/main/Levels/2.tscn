@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://dudd0c2a801m7"]
+[gd_scene load_steps=11 format=4 uid="uid://dudd0c2a801m7"]
 
+[ext_resource type="Script" uid="uid://bxrlcbnck6fav" path="res://main/Levels/2.gd" id="1_d0r08"]
 [ext_resource type="PackedScene" uid="uid://cjlcrnnsc4lag" path="res://player/player.tscn" id="1_esn0i"]
 [ext_resource type="Script" uid="uid://sbp33s7p500q" path="res://main/void.gd" id="2_d0r08"]
-[ext_resource type="PackedScene" uid="uid://do6q0l3lyweuk" path="res://enemy/meleeBasic/enemy_melee.tscn" id="3_foyoj"]
 [ext_resource type="PackedScene" uid="uid://cufo1evpompqv" path="res://intoTheDungeonPlayer.tscn" id="4_4dpne"]
 [ext_resource type="Texture2D" uid="uid://c7xhn1sog3afo" path="res://assets/dungeonTileset.png" id="5_nh1im"]
 [ext_resource type="PackedScene" uid="uid://cm6oop1vqlltf" path="res://inventory/inventory.tscn" id="6_okfyh"]
@@ -28,7 +28,11 @@ separation = Vector2i(1, 1)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_6akda")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0r08"]
+size = Vector2(1021.5, 367)
+
 [node name="2" type="Node2D"]
+script = ExtResource("1_d0r08")
 
 [node name="Player" parent="." instance=ExtResource("1_esn0i")]
 position = Vector2(191, -7)
@@ -48,9 +52,6 @@ script = ExtResource("2_d0r08")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Void"]
 shape = SubResource("WorldBoundaryShape2D_uiudg")
 
-[node name="EnemyMelee" parent="." instance=ExtResource("3_foyoj")]
-position = Vector2(-413, -518)
-
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("4_4dpne")]
 volume_db = -24.36
 
@@ -64,4 +65,11 @@ tile_set = SubResource("TileSet_ibuq7")
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("6_okfyh")]
 metadata/_edit_use_anchors_ = true
 
+[node name="Level2End" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level2End"]
+position = Vector2(-3.75, -1287.5)
+shape = SubResource("RectangleShape2D_d0r08")
+
 [connection signal="body_entered" from="Void" to="Void" method="_on_body_entered"]
+[connection signal="body_entered" from="Level2End" to="." method="_on_level_2_end_body_entered"]
