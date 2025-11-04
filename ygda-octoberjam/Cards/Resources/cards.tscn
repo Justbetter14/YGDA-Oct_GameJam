@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjppewtegx2pi"]
+
+[ext_resource type="Script" uid="uid://dfpk3pwl1kj1i" path="res://Cards/Resources/cards.gd" id="1_trm6v"]
+[ext_resource type="Texture2D" uid="uid://7074ai6kpocm" path="res://assets/CardTemplate.png" id="2_cfgx4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trm6v"]
+size = Vector2(34, 51)
+
+[node name="Cards" type="Node2D"]
+script = ExtResource("1_trm6v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cfgx4")
+
+[node name="Pickup Area" type="Area2D" parent="." groups=["cards"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup Area"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_trm6v")

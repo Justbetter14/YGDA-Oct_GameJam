@@ -3,6 +3,16 @@ extends CharacterBody2D
 var hp: int = 100
 var player: CharacterBody2D = null
 
+#region Card Variables
+@export var cardChance: int = 33
+var cardScene = preload("res://Cards/Resources/cards.tscn")
+const daggerCard: Card = preload("res://Cards/Resources/daggerCard.tres")
+const dashCard: Card = preload("res://Cards/Resources/dashCard.tres")
+const fireCard: Card = preload("res://Cards/Resources/fireballCard.tres")
+const swordCard: Card = preload("res://Cards/Resources/swordCard.tres")
+@export var cardsList = [daggerCard, dashCard, fireCard, swordCard]
+#endregion
+
 #region Movement Variables
 const SPEED: int = 35
 var x_direction: int = 1
@@ -16,10 +26,11 @@ var canBite: bool = true
 
 func _ready():
 	player = get_parent().get_node("Player")
+	randomize()
 
 func _physics_process(_delta: float) -> void:
 	if hp <= 0:
-		queue_free()
+		die()
 	if shouldMove == true:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = SPEED * direction
@@ -91,5 +102,22 @@ func takeDmg(num: int):
 	hp -= num
 	print("Oh No I been Hit! * Dun Dun DUN *")
 	if hp <= 0:
-		queue_free()
+		die()
+
+func die():
+	cardDraw(global_position)
+	queue_free()
 #endregion
+
+func cardDraw(pos: Vector2):
+	var randInt = randi() % 100
+	
+	if randInt > cardChance:
+		return
+	
+	var card = cardsList.pick_random()
+	
+	var instance = cardScene.instantiate()
+	instance.card = card
+	instance.global_position = pos
+	get_parent().add_child(instance)
