@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://dg8lpxr03pnmc"]
+
+[ext_resource type="Script" uid="uid://oslmdvxnn3bx" path="res://Cards/Resources/card.gd" id="1_7b2la"]
+[ext_resource type="Texture2D" uid="uid://dw7ubvcmpiki3" path="res://assets/projectiles.png" id="2_gg71w"]
+
+[resource]
+script = ExtResource("1_7b2la")
+display_name = "walljump"
+texture = ExtResource("2_gg71w")
+cardType = "movement"
+ableDash = false
+ableDoubleJump = false
+ableWallJump = true
+ableFire = false
+ableDagger = false
+ableSword = false
