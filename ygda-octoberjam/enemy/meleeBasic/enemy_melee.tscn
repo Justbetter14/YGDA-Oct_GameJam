@@ -134,6 +134,7 @@ animation = &"Bite2"
 wait_time = 0.033
 
 [connection signal="area_entered" from="Hit Box Area" to="." method="_on_hit_box_area_area_entered"]
+[connection signal="body_entered" from="Hit Box Area" to="." method="_on_hit_box_area_body_entered"]
 [connection signal="body_entered" from="Attack Area" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="Attack Area" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="Attack Cooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dct5fa6cpctsu"]
+[gd_scene load_steps=7 format=3 uid="uid://dct5fa6cpctsu"]
 
 [ext_resource type="Texture2D" uid="uid://dgbj0phv5ppj1" path="res://pixil-frame-1.png" id="1_773n7"]
 [ext_resource type="Script" uid="uid://d3aob3d6rqdfp" path="res://enemy/rangedBasic/enemy_range.gd" id="1_njlcv"]
@@ -10,7 +10,10 @@ radius = 24.0
 height = 56.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_773n7"]
-radius = 248.202
+radius = 345.006
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlf70"]
+radius = 127.883
 
 [node name="EnemyRange" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_njlcv")
@@ -43,8 +46,15 @@ one_shot = true
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-4, 27)
 
+[node name="Run Away Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Run Away Area"]
+shape = SubResource("CircleShape2D_qlf70")
+
 [connection signal="area_entered" from="Hit Box Area" to="." method="_on_hit_box_area_area_entered"]
 [connection signal="body_entered" from="Hit Box Area" to="." method="_on_hit_box_area_body_entered"]
 [connection signal="body_entered" from="Attack Area" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="Attack Area" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="Bullet Cooldown" to="." method="_on_bullet_cooldown_timeout"]
+[connection signal="body_entered" from="Run Away Area" to="." method="_on_run_away_area_body_entered"]
+[connection signal="body_exited" from="Run Away Area" to="." method="_on_run_away_area_body_exited"]

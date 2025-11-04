@@ -1,32 +1,32 @@
 extends CharacterBody2D
 
-const SPEED: int = 35
 var hp: int = 100
-var x_direction: int = 1
-var dmg: int = 10
 var player: CharacterBody2D = null
 
-var canBite: bool = true
+#region Movement Variables
+const SPEED: int = 35
+var x_direction: int = 1
 var shouldMove: bool = true
+#endregion
 
-# Called when the node enters the scene tree for the first time.
+#region Damage Variables
+var dmg: int = 10
+var canBite: bool = true
+#endregion
+
 func _ready():
 	player = get_parent().get_node("Player")
 
-# Called every frame. 'delta' i	s the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	if hp <= 0:
 		queue_free()
-	for body in $"Hit Box Area".get_overlapping_bodies():
-		if body.is_in_group("player"):
-			var knockbackDirection = (player.global_position - global_position).normalized()
-			player.applyKnockback(knockbackDirection, 300, 0.2, dmg)			
 	if shouldMove == true:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = SPEED * direction
 		move_and_slide()
 		$Sprite2D.play("Idle")
 
+#region Attack & Movement Functions
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		shouldMove = false
@@ -34,17 +34,10 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 		await $Sprite2D.animation_finished
 		$Sprite2D.play("Bite2")
 		#$attackTimer.start()
-		if body.is_in_group("player"):
-			if canBite:
-				bite()
-				shouldMove = true
-				$"Attack Cooldown".start()
-
-func takeDmg(num: int):
-	hp -= num
-	print("Oh No I been Hit! * Dun Dun DUN *")
-	if hp <= 0:
-		queue_free()
+		if canBite:
+			bite()
+			shouldMove = true
+			$"Attack Cooldown".start()
 
 func bite():
 	#player.dmg(dmg)
@@ -63,11 +56,17 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 func _on_attack_timer_timeout() -> void:
 	for body in $"Attack Area".get_overlapping_bodies():
 		if body.is_in_group("player"):
+			shouldMove = false
+			$Sprite2D.play("Bite1")
+			await $Sprite2D.animation_finished
+			$Sprite2D.play("Bite2")
 			if canBite:
 				bite()
 				shouldMove = true
 				$"Attack Cooldown".start()
+#endregion
 
+#region Hurt & Collision Functions
 func _on_hit_box_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("attack"):
 		print("Print Projectivle Contatatstc")
@@ -82,4 +81,15 @@ func _on_hit_box_area_area_entered(area: Area2D) -> void:
 		else:
 			print("Sword")
 			takeDmg(player.Strength)
-		
+
+func _on_hit_box_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		var knockbackDirection = (player.global_position - global_position).normalized()
+		player.applyKnockback(knockbackDirection, 300, 0.2, dmg)
+
+func takeDmg(num: int):
+	hp -= num
+	print("Oh No I been Hit! * Dun Dun DUN *")
+	if hp <= 0:
+		queue_free()
+#endregion
