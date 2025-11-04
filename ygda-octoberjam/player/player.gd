@@ -109,13 +109,13 @@ func die():
 	queue_free()
 
 func dmg(num: int):
-#endregion
 	print('triggered')
 	if iframe == false:
 		currHealth -= num
 		health_Update()
 		iframe = true
 		$iFrame.start()
+#endregion
 
 #region Collision & Forces Functions
 func _on_i_frame_timeout() -> void:
