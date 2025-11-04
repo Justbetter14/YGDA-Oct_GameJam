@@ -7,14 +7,18 @@ The theme of the game jam is Transformation.
 
 ## Controls of Game
 ###  Jump
-W / Up Arrow / Space
+Space / Up Arrow
 ###  Right
 D / Right Arrow
 ###  Left
 A / Left Arrow
+## Aim Up
+W
+## Aim Down
+S
 ###  Dash
-Z / Right Mouse Button
+J
 ### Attack
-C / Left Mouse Button
+K
 
 
