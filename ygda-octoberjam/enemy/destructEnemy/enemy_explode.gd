@@ -23,7 +23,8 @@ var shouldMove: bool = true
 #endregion
 
 #region Damage Variables
-var dmg: int = 100
+var dmg: int = 25
+var hasExploded: bool = false
 #endregion
 
 func _ready() -> void:
@@ -66,8 +67,20 @@ func takeDmg(num: int):
 		die()
 
 func die():
+	$"Explosion Area".monitoring = true
+	shouldMove = false
+	print("Dead Check")
+	await get_tree().process_frame
+	if player in $"Explosion Area".get_overlapping_bodies():
+		print("Explosion after Death Check")
+		if hasExploded == false:
+			var knockbackDirection = (player.global_position - global_position).normalized()
+			player.applyKnockback(knockbackDirection, 600, 0.3, dmg)
+			print("Exploded After Death")
+	print("Died")
 	cardDraw(global_position)
-	queue_free()
+	if hasExploded:
+		queue_free()
 
 func cardDraw(pos: Vector2):
 	if cardGiven:
@@ -98,6 +111,8 @@ func _on_explosion_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		var knockbackDirection = (player.global_position - global_position).normalized()
 		player.applyKnockback(knockbackDirection, 600, 0.3, dmg)
+		hasExploded = true
+		print("Yippee")
 		die()
 
 func _on_startup_timeout() -> void:
