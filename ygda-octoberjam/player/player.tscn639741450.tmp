@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cjlcrnnsc4lag"]
+[gd_scene load_steps=54 format=3 uid="uid://cjlcrnnsc4lag"]
 
 [ext_resource type="Script" uid="uid://dflmp7ykxx0ki" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://7x1tmw8jjtsq" path="res://assets/player_dash_left.png" id="2_boad6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cxqmn8cqtptd1" path="res://assets/player_idle (1).png" id="4_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://bgwsh27tk8jy1" path="res://assets/player_run (1).png" id="6_8t03j"]
 [ext_resource type="Texture2D" uid="uid://husar8k2uhut" path="res://assets/jump and fall (1).png" id="7_2ieo8"]
+[ext_resource type="Texture2D" uid="uid://d0fv8tu1jt0v3" path="res://assets/SwordSwing.png" id="10_8t03j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebec5"]
 atlas = ExtResource("2_boad6")
@@ -153,6 +154,22 @@ region = Rect2(24, 28, 24, 28)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ieo8"]
 atlas = ExtResource("3_g1dw6")
 region = Rect2(48, 28, 24, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx5ib"]
+atlas = ExtResource("10_8t03j")
+region = Rect2(0, 0, 44, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2xo5"]
+atlas = ExtResource("10_8t03j")
+region = Rect2(44, 0, 44, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_art4l"]
+atlas = ExtResource("10_8t03j")
+region = Rect2(88, 0, 44, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjxoa"]
+atlas = ExtResource("10_8t03j")
+region = Rect2(132, 0, 44, 42)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ebec5"]
 animations = [{
@@ -323,6 +340,23 @@ animations = [{
 "loop": true,
 "name": &"right",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx5ib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2xo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_art4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjxoa")
+}],
+"loop": false,
+"name": &"swordSlash",
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
@@ -338,10 +372,10 @@ script = ExtResource("1_rkbax")
 healthbar = NodePath("HealthBar")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -7.79592)
-scale = Vector2(1, 1.56)
+position = Vector2(1.5411, 9.53674e-07)
+scale = Vector2(0.303549, 0.655977)
 sprite_frames = SubResource("SpriteFrames_ebec5")
-animation = &"dashLeft"
+animation = &"swordSlash"
 
 [node name="Platform Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0.171233, 0.357145)
@@ -368,7 +402,6 @@ wait_time = 1.23
 one_shot = true
 
 [node name="fireball Cooldown" type="Timer" parent="."]
-wait_time = 0.6
 one_shot = true
 
 [node name="dagger Cooldown" type="Timer" parent="."]
@@ -376,30 +409,9 @@ wait_time = 0.33
 one_shot = true
 
 [node name="sword Cooldown" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
 
 [node name="basic Cooldown" type="Timer" parent="."]
 one_shot = true
-
-[node name="Right Slash" type="Area2D" parent="." groups=["attack"]]
-scale = Vector2(1, 1)
-monitoring = false
-monitorable = false
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Right Slash"]
-position = Vector2(-5, 0)
-scale = Vector2(-1.5, 1.25)
-polygon = PackedVector2Array(-9.93151, 12.2449, -9.24657, -21.9388, 7.53425, -34.1837, 13.6986, -47.9592, -10.6164, -38.7755, -21.5753, -26.5306, -21.9178, 11.7347)
-
-[node name="Left Slash" type="Area2D" parent="." groups=["attack"]]
-monitoring = false
-monitorable = false
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Left Slash"]
-position = Vector2(5, 0)
-scale = Vector2(1.5, 1.25)
-polygon = PackedVector2Array(-9.93151, 12.2449, -9.24657, -21.9388, 7.53425, -34.1837, 13.6986, -47.9592, -10.6164, -38.7755, -21.5753, -26.5306, -21.9178, 11.7347)
 
 [connection signal="timeout" from="dashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="dashTimer" to="." method="_on_dash_timer_timeout"]

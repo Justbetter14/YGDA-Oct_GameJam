@@ -2,7 +2,7 @@ extends Area2D
 
 class_name Fireball
 
-var speed: int = 200
+var speed: int = 325
 @export var dmg: int = 75
 var direction: Vector2 = Vector2.ZERO
 
