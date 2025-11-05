@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal death
 
-#region Jump & Speed Vars
+#region Jump & Speed Varsd
 var SPEED: int = 250
 const JUMP_POW: int = -700
 var x_direction: int = 0
@@ -257,14 +257,12 @@ func basic():
 		$"basic Cooldown".start()
 		ableBasic = false
 		print("Attack /w basic")
-		
 		if dir == 'right':
 			print("Bsaic Right")
 			rightSlash()
 		elif dir == 'left':
 			print("bsaic Left")
 			leftSlash()
-		
 		ableBasic = true
 
 func fireBall():
@@ -362,9 +360,13 @@ func sword():
 		
 		if dir == 'right':
 			print("Sowrdd Right")
+			#$Sprite2D.play("swordSlash")
+			#await $Sprite2D.animation_finished
 			rightSlash()
 		elif dir == 'left':
 			print("Sowrdd Left")
+			#$Sprite2D.play("swordSlash")
+			#await $Sprite2D.animation_finished
 			leftSlash()
 		
 		ableSword = true
@@ -372,10 +374,10 @@ func sword():
 func rightSlash():
 	$"Right Slash".monitoring = true
 	$"Right Slash".monitorable = true
-	$Sprite2D.flip_h = false
-	$Sprite2D.play("swordSlash")
-	await $Sprite2D.animation_finished
+	#$Sprite2D.flip_h = false
 	await get_tree().create_timer(0.2).timeout
+	#$Sprite2D.play("swordSlash")
+	#await $Sprite2D.animation_finished
 	$"Right Slash".monitoring = false
 	$"Right Slash".monitorable = false
 
@@ -383,8 +385,6 @@ func leftSlash():
 	$"Left Slash".monitoring = true
 	$"Left Slash".monitorable = true
 	$Sprite2D.flip_h = true
-	$Sprite2D.play("swordSlash")
-	await $Sprite2D.animation_finished
 	$Sprite2D.flip_h = false
 	await get_tree().create_timer(0.2).timeout
 	$"Left Slash".monitoring = false

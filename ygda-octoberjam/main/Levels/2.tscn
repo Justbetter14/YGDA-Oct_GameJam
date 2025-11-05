@@ -68,8 +68,9 @@ metadata/_edit_use_anchors_ = true
 [node name="Level2End" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level2End"]
-position = Vector2(-3.75, -1287.5)
+position = Vector2(24, -1640)
 shape = SubResource("RectangleShape2D_d0r08")
 
+[connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="body_entered" from="Void" to="Void" method="_on_body_entered"]
 [connection signal="body_entered" from="Level2End" to="." method="_on_level_2_end_body_entered"]
