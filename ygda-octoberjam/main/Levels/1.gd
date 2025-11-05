@@ -12,3 +12,10 @@ func _ready() -> void:
 func _on_level_1_end_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		get_parent().nextLevel()
+		queue_free()	
+	
+
+
+func _on_player_death() -> void:
+	get_parent().death()
+	pass # Replace with function body.
