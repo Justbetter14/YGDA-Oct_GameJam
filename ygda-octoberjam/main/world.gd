@@ -1,12 +1,12 @@
 extends Node
 
-var currentLevel = 1
+var currentLevel = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$UserInterface/Retry.hide()
 	$RetryCamera.enabled = false
-	#add_child(load("res://main/Levels/1.tscn").instantiate())
+
 func _unhandled_input(event):
 	if event.is_action_pressed("Select") and $UserInterface/Retry.visible:
 		# This restarts the current scene.
