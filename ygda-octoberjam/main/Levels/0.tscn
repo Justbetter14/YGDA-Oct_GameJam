@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdcg3tj6vdpcl"]
 
 [ext_resource type="Script" uid="uid://6smxg1critdi" path="res://main/Levels/0.gd" id="1_b1m0w"]
-[ext_resource type="Texture2D" uid="uid://dde8gl8mmyrll" path="res://test/rick.webp" id="1_hk0k4"]
+[ext_resource type="Texture2D" uid="uid://by20bwglnjhgs" path="res://assets/game_logo.png" id="2_b1m0w"]
 
 [node name="0" type="Node2D"]
 script = ExtResource("1_b1m0w")
@@ -16,8 +16,8 @@ offset_bottom = 538.0
 layout_mode = 1
 offset_right = 1192.0
 offset_bottom = 620.0
-scale = Vector2(0.8, 0.85)
-texture = ExtResource("1_hk0k4")
+scale = Vector2(0.77, 0.75)
+texture = ExtResource("2_b1m0w")
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 1
