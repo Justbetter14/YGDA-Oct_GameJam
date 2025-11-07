@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dct5fa6cpctsu"]
 
-[ext_resource type="Texture2D" uid="uid://dgbj0phv5ppj1" path="res://pixil-frame-1.png" id="1_773n7"]
 [ext_resource type="Script" uid="uid://d3aob3d6rqdfp" path="res://enemy/rangedBasic/enemy_range.gd" id="1_njlcv"]
+[ext_resource type="Texture2D" uid="uid://0xa8q2nmsyal" path="res://assets/pixil-frame-11.png" id="2_qlf70"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qlf70"]
 
@@ -28,9 +28,11 @@ disabled = true
 shape = SubResource("CapsuleShape2D_njlcv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(9, 5)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_773n7")
+rotation = 3.14159
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_qlf70")
+region_enabled = true
+region_rect = Rect2(44, 0, 16, 16)
 
 [node name="Attack Area" type="Area2D" parent="."]
 position = Vector2(14, 9)
@@ -44,7 +46,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-4, 27)
+position = Vector2(20, 0)
 
 [node name="Run Away Area" type="Area2D" parent="."]
 

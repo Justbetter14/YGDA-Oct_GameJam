@@ -1,4 +1,4 @@
-extends Sprite2D
+extends AnimatedSprite2D
 
 var speed: int = 200
 var direction: Vector2 = Vector2.ZERO
@@ -11,6 +11,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	play("spin")
 	position += direction * speed * delta
 
 

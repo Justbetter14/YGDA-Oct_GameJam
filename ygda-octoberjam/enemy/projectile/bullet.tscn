@@ -1,24 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://b43adatqkbufh"]
+[gd_scene load_steps=9 format=3 uid="uid://b43adatqkbufh"]
 
-[ext_resource type="Texture2D" uid="uid://dw7ubvcmpiki3" path="res://assets/projectiles.png" id="1_fqk6x"]
+[ext_resource type="Texture2D" uid="uid://coefbcrc3068s" path="res://assets/pixil-frame-0.png" id="1_fqk6x"]
 [ext_resource type="Script" uid="uid://3j483dq4qjuh" path="res://enemy/projectile/bullet.gd" id="2_q26q2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkf8s"]
-size = Vector2(8.5, 5.625)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hutw"]
+atlas = ExtResource("1_fqk6x")
+region = Rect2(0, 0, 16, 16)
 
-[node name="Bullet" type="Sprite2D"]
-scale = Vector2(4, 4)
-texture = ExtResource("1_fqk6x")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpem0"]
+atlas = ExtResource("1_fqk6x")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecucs"]
+atlas = ExtResource("1_fqk6x")
+region = Rect2(34, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbekg"]
+atlas = ExtResource("1_fqk6x")
+region = Rect2(51, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1u3ii"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hutw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpem0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecucs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbekg")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkf8s"]
+size = Vector2(7, 6.5)
+
+[node name="Bullet" type="AnimatedSprite2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_1u3ii")
+animation = &"spin"
 script = ExtResource("2_q26q2")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.75, -0.375)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_mkf8s")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.75, 0.75)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
