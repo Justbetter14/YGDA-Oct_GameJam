@@ -52,6 +52,8 @@ func _physics_process(_delta: float) -> void:
 	else:
 		if canShoot:
 			shoot()
+	
+	look_at(player.global_position)
 
 #region Attack Functions
 func _on_bullet_cooldown_timeout() -> void:
