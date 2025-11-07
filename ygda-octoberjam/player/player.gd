@@ -4,7 +4,9 @@ signal death
 
 #region Jump & Speed Varsd
 var SPEED: int = 250
-const JUMP_POW: int = -700
+var maxSpeed: int = 250
+var dashSpeed: int = 550
+const JUMP_POW: int = -650
 var x_direction: int = 0
 var dir: String = 'right'
 #endregion
@@ -230,9 +232,9 @@ func dash():
 			ableDash = false
 		
 	if dashing:
-		SPEED = 550
+		SPEED = dashSpeed
 	else:
-		SPEED = 200
+		SPEED = maxSpeed
 
 func _on_dash_timer_timeout() -> void:
 	dashing = false
