@@ -15,9 +15,9 @@ Space / Up Arrow
 D / Right Arrow
 ###  Left
 A / Left Arrow
-## Aim Up
+### Aim Up
 W
-## Aim Down
+### Aim Down
 S
 ###  Dash
 J
