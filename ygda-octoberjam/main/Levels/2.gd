@@ -9,12 +9,13 @@ func _ready() -> void:
 	melee1.cardsList = [load("res://Cards/Resources/walljumpCard.tres")]
 	add_child(melee1)
 
+func _process(delta: float) -> void:
+	$Checkpoint.play("default")
+
 func _on_level_2_end_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		get_parent().nextLevel()
 		queue_free()
-
-
 
 func _on_player_death() -> void:
 	get_parent().death()

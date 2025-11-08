@@ -1,16 +1,53 @@
-[gd_scene load_steps=11 format=4 uid="uid://c466sm01yq0hn"]
+[gd_scene load_steps=17 format=4 uid="uid://c466sm01yq0hn"]
 
 [ext_resource type="Script" uid="uid://c36kyyaptnkv8" path="res://main/Levels/3.gd" id="1_4nsmn"]
 [ext_resource type="PackedScene" uid="uid://cjlcrnnsc4lag" path="res://player/player.tscn" id="1_dedm7"]
 [ext_resource type="Script" uid="uid://sbp33s7p500q" path="res://main/void.gd" id="2_4nsmn"]
+[ext_resource type="Texture2D" uid="uid://dww6b8tndbqk4" path="res://assets/Checkpoint _D.png" id="2_mgsqt"]
 [ext_resource type="PackedScene" uid="uid://cufo1evpompqv" path="res://intoTheDungeonPlayer.tscn" id="3_mgsqt"]
 [ext_resource type="Texture2D" uid="uid://c7xhn1sog3afo" path="res://assets/dungeonTileset.png" id="4_cadmi"]
 [ext_resource type="PackedScene" uid="uid://cm6oop1vqlltf" path="res://inventory/inventory.tscn" id="5_dafc0"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5rtk"]
+atlas = ExtResource("2_mgsqt")
+region = Rect2(0, 0, 30, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6dko"]
+atlas = ExtResource("2_mgsqt")
+region = Rect2(30, 0, 30, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6kdu"]
+atlas = ExtResource("2_mgsqt")
+region = Rect2(0, 35, 30, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo8w6"]
+atlas = ExtResource("2_mgsqt")
+region = Rect2(30, 35, 30, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cadmi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5rtk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6dko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6kdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo8w6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jti24"]
 distance = -641.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8b7sg"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4nsmn"]
 texture = ExtResource("4_cadmi")
 separation = Vector2i(1, 1)
 1:0/0 = 0
@@ -26,13 +63,18 @@ separation = Vector2i(1, 1)
 
 [sub_resource type="TileSet" id="TileSet_du7lv"]
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_8b7sg")
+sources/1 = SubResource("TileSetAtlasSource_4nsmn")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kl7vv"]
 size = Vector2(1021.5, 775.5)
 
 [node name="3" type="Node2D"]
 script = ExtResource("1_4nsmn")
+
+[node name="Checkpoint" type="AnimatedSprite2D" parent="."]
+position = Vector2(165, -9)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_cadmi")
 
 [node name="Player" parent="." instance=ExtResource("1_dedm7")]
 position = Vector2(191, -7)
