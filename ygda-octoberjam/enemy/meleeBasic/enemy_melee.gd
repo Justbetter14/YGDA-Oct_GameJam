@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var hp: int = 100
+@export var hp: int = 100
 var player: CharacterBody2D = null
 
 #region Card Variables
@@ -23,7 +23,7 @@ var shouldMove: bool = true
 #endregion
 
 #region Damage Variables
-var dmg: int = 10
+@export var dmg: int = 10
 var canBite: bool = true
 #endregion
 
