@@ -98,7 +98,7 @@ size = Vector2(1016.75, 682)
 script = ExtResource("1_xh1pp")
 
 [node name="Checkpoint" type="AnimatedSprite2D" parent="."]
-position = Vector2(-480, -9)
+position = Vector2(-480, -174)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_pjniw")
 frame_progress = 0.708023

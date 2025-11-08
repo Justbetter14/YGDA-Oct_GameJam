@@ -3,6 +3,7 @@ extends Node2D
 var basicEnemy = preload("res://enemy/meleeBasic/enemy_melee.tscn")
 
 func _ready() -> void:
+	$Checkpoint.global_position = $Player.global_position + Vector2(0, -7)
 	var melee1 = basicEnemy.instantiate()
 	melee1.global_position = Vector2(-518.0, -413.0)
 	melee1.cardChance = 100
