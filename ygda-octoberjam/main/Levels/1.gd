@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready() -> void:
+	$Checkpoint.global_position = $Player.global_position + Vector2(0, -7)
 	pass
 
 func _process(delta: float) -> void:
