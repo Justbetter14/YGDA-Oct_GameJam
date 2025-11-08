@@ -1,7 +1,7 @@
 extends Node
 
 var sfx = {
-	"temp" : preload("res://audio/test1.wav")
+	#"temp" : preload("res://audio/test1.wav")
 }
 
 var volume: float = 1.0
