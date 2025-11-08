@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://bvkvpy2k8n6yt"]
+[gd_scene load_steps=18 format=4 uid="uid://bvkvpy2k8n6yt"]
 
 [ext_resource type="Texture2D" uid="uid://dww6b8tndbqk4" path="res://assets/Checkpoint _D.png" id="1_4dl2m"]
 [ext_resource type="Script" uid="uid://y37eqxv7fmsp" path="res://main/Levels/17.gd" id="1_c7486"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://sbp33s7p500q" path="res://main/void.gd" id="3_dg56i"]
 [ext_resource type="PackedScene" uid="uid://cufo1evpompqv" path="res://intoTheDungeonPlayer.tscn" id="4_7b6xv"]
 [ext_resource type="Texture2D" uid="uid://c7xhn1sog3afo" path="res://assets/dungeonTileset.png" id="5_rvtli"]
+[ext_resource type="AudioStream" uid="uid://npstv7s3vatp" path="res://assets/heaven.wav" id="6_dg56i"]
 [ext_resource type="PackedScene" uid="uid://cm6oop1vqlltf" path="res://inventory/inventory.tscn" id="6_rckmn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r5rtk"]
@@ -94,6 +95,7 @@ script = ExtResource("3_dg56i")
 shape = SubResource("WorldBoundaryShape2D_rd8nd")
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("4_7b6xv")]
+stream = ExtResource("6_dg56i")
 volume_db = -24.36
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

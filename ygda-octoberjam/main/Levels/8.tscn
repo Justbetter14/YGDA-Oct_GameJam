@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://c7iipslrl84o"]
+[gd_scene load_steps=18 format=4 uid="uid://c7iipslrl84o"]
 
 [ext_resource type="Script" uid="uid://bhx2yuomd6qv7" path="res://main/Levels/8.gd" id="1_i0bpy"]
 [ext_resource type="PackedScene" uid="uid://cjlcrnnsc4lag" path="res://player/player.tscn" id="1_v3r1g"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cufo1evpompqv" path="res://intoTheDungeonPlayer.tscn" id="3_3wjj5"]
 [ext_resource type="Texture2D" uid="uid://c7xhn1sog3afo" path="res://assets/dungeonTileset.png" id="4_2ckei"]
 [ext_resource type="PackedScene" uid="uid://cm6oop1vqlltf" path="res://inventory/inventory.tscn" id="5_324qd"]
+[ext_resource type="AudioStream" uid="uid://b430gprvxa6yy" path="res://assets/the tower (i want to kms).wav" id="6_2ckei"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r5rtk"]
 atlas = ExtResource("2_3wjj5")
@@ -94,6 +95,7 @@ script = ExtResource("2_i0bpy")
 shape = SubResource("WorldBoundaryShape2D_g8d4d")
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("3_3wjj5")]
+stream = ExtResource("6_2ckei")
 volume_db = -24.36
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
