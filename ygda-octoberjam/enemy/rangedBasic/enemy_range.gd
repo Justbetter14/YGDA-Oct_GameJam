@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var hp: int = 100
+@export var hp: int = 100
 var player: CharacterBody2D = null
 
 #region Movement Variables
@@ -12,7 +12,7 @@ var shouldRun: bool = false
 
 #region Attack Variables
 var canShoot: bool = true
-var dmg: int = 10
+@export var dmg: int = 10
 var bulletScene = preload("res://enemy/projectile/bullet.tscn")
 #endregion
 
@@ -63,6 +63,7 @@ func shoot():
 	var instance = bulletScene.instantiate()
 	instance.global_position = $Marker2D.global_position
 	instance.direction = (player.global_position - global_position).normalized()
+	instance.damage = dmg
 	get_parent().add_child(instance)
 	$"Bullet Cooldown".start()
 	canShoot = false
