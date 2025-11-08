@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbkm7d6nrhsuu"]
+[gd_scene load_steps=5 format=3 uid="uid://bbkm7d6nrhsuu"]
 
 [ext_resource type="Texture2D" uid="uid://by20bwglnjhgs" path="res://assets/game_logo.png" id="1_a7q1q"]
 [ext_resource type="FontFile" uid="uid://i45n0ul8jb4g" path="res://Godot-Fontpack/cloister_black/CloisterBlack.ttf" id="2_mnds4"]
+[ext_resource type="PackedScene" uid="uid://cufo1evpompqv" path="res://intoTheDungeonPlayer.tscn" id="3_busp5"]
+[ext_resource type="AudioStream" uid="uid://rf3qe0aig780" path="res://assets/title.wav" id="4_mi2iy"]
 
 [node name="18" type="Node2D"]
 
@@ -45,3 +47,7 @@ offset_top = 280.0
 offset_right = 543.0
 offset_bottom = 303.0
 text = "Thank you for playing"
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("3_busp5")]
+stream = ExtResource("4_mi2iy")
+volume_db = -24.36
