@@ -125,6 +125,8 @@ func cardDraw(pos: Vector2):
 	if randInt > cardChance:
 		return
 	
+	if not cardsList:
+		cardsList = [daggerCard, dashCard, fireCard, swordCard, doublejumpCard, walljumpCard]
 	var card = cardsList.pick_random()
 	
 	var instance = cardScene.instantiate()
