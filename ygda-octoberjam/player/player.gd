@@ -2,7 +2,9 @@ extends CharacterBody2D
 
 signal death
 
-#region Jump & Speed Varsd
+var sounds: SoundEffects
+
+#region Jump & Speed Vars
 var SPEED: int = 250
 var maxSpeed: int = 250
 var dashSpeed: int = 550
@@ -48,6 +50,8 @@ var canWallJump: bool = false
 #endregion
 
 #region Attack Variables
+var attacking: bool = false
+
 # Basic
 var canBasic: bool = true
 var ableBasic: bool = true
@@ -82,7 +86,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	gravityCooldown(delta)
 	
-	animation()
+	if not attacking:
+		animation()
 	
 	doubleJump()
 	dash()
@@ -258,6 +263,7 @@ func basic():
 	if Input.is_action_pressed("Attack") and $"basic Cooldown".is_stopped() and canBasic and ableBasic:
 		$"basic Cooldown".start()
 		ableBasic = false
+		attacking = true
 		print("Attack /w basic")
 		if dir == 'right':
 			print("Bsaic Right")
@@ -265,11 +271,13 @@ func basic():
 		elif dir == 'left':
 			print("bsaic Left")
 			leftSlash()
+		attacking = false
 		ableBasic = true
 
 func fireBall():
 	if Input.is_action_pressed("Attack") and $"fireball Cooldown".is_stopped() and canFire: # Check if player cooldown is over
 		$"fireball Cooldown".start()
+		attacking = true
 		var fire: Area2D = fireball.instantiate()
 		fire.position = position
 		
@@ -303,10 +311,13 @@ func fireBall():
 		fire.direction = Fdirection
 		
 		get_tree().current_scene.add_child(fire)
+		
+		attacking = false
 
 func dagger():
 	if Input.is_action_pressed("Attack") and $"dagger Cooldown".is_stopped() and canDagger:
 		$"dagger Cooldown".start()
+		attacking = true
 		var dag0: Area2D = daggerZero.instantiate()
 		dag0.position = position
 		var dagPos1: Area2D = daggerPos.instantiate()
@@ -348,6 +359,8 @@ func dagger():
 		get_tree().current_scene.add_child(dag0)
 		get_tree().current_scene.add_child(dagPos1)
 		get_tree().current_scene.add_child(dagNeg1)
+		
+		attacking = false
 
 func sword():
 	if canSword == false:
@@ -357,6 +370,7 @@ func sword():
 	
 	if Input.is_action_pressed("Attack") and $"sword Cooldown".is_stopped():
 		$"sword Cooldown".start()
+		attacking = true
 		ableSword = false
 		print("Attack /w swordddd")
 		
@@ -371,23 +385,19 @@ func sword():
 			#await $Sprite2D.animation_finished
 			leftSlash()
 		
+		attacking = false
 		ableSword = true
 
 func rightSlash():
 	$"Right Slash".monitoring = true
 	$"Right Slash".monitorable = true
-	#$Sprite2D.flip_h = false
 	await get_tree().create_timer(0.2).timeout
-	#$Sprite2D.play("swordSlash")
-	#await $Sprite2D.animation_finished
 	$"Right Slash".monitoring = false
 	$"Right Slash".monitorable = false
 
 func leftSlash():
 	$"Left Slash".monitoring = true
 	$"Left Slash".monitorable = true
-	$Sprite2D.flip_h = true
-	$Sprite2D.flip_h = false
 	await get_tree().create_timer(0.2).timeout
 	$"Left Slash".monitoring = false
 	$"Left Slash".monitorable = false
