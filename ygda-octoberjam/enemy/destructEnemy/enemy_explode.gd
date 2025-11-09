@@ -35,6 +35,7 @@ func _physics_process(_delta: float) -> void:
 	if hp <= 0:
 		die()
 	if shouldMove:
+		$Sprite2D.play("default")
 		var direction = (player.global_position - global_position).normalized()
 		velocity = SPEED * direction
 		move_and_slide()
