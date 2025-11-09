@@ -1,14 +1,29 @@
 extends Node2D
 
 var basicEnemy = preload("res://enemy/meleeBasic/enemy_melee.tscn")
+var basicExplode = preload("res://enemy/destructEnemy/EnemyExplode.tscn")
+var basicRange = preload("res://enemy/rangedBasic/enemy_range.tscn")
 
 func _ready() -> void:
 	$Checkpoint.global_position = $Player.global_position + Vector2(0, -7)
-	var melee1 = basicEnemy.instantiate()
-	melee1.global_position = Vector2(-518.0, -413.0)
-	melee1.cardChance = 33
-	melee1.cardsList = []
-	add_child(melee1)
+	var range1 = basicRange.instantiate()
+	var range2 = basicRange.instantiate()
+	var range3 = basicRange.instantiate()
+	var range4 = basicRange.instantiate()
+	var range5 = basicRange.instantiate()
+	var range6 = basicRange.instantiate()
+	range1.global_position = Vector2(833, -600)
+	range2.global_position = Vector2(1000, -680)
+	range3.global_position = Vector2(700, -400)
+	range4.global_position = Vector2(-200, -680)
+	range5.global_position = Vector2(-400, -200)
+	range6.global_position = Vector2(20, 100)
+	add_child(range1)
+	add_child(range2)
+	add_child(range3)
+	add_child(range4)
+	add_child(range5)
+	add_child(range6)
 
 func _process(delta: float) -> void:
 	$Checkpoint.play("default")
