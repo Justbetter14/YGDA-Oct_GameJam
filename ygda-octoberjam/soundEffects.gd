@@ -1,7 +1,17 @@
 extends Node
 
 var sfx = {
-	#"temp" : preload("res://audio/test1.wav")
+	"cardPickup" : preload("res://sfx/sfx/card pickup.wav"),
+	"enemy" : preload("res://sfx/sfx/enemy scream.wav"),
+	"dash" : preload("res://sfx/sfx/dash.wav"),
+	"fireball" : preload("res://sfx/sfx/fireball.wav"),
+	"hit" : preload("res://sfx/sfx/hitHurt.wav"),
+	"jump" : preload("res://sfx/sfx/jump.wav"),
+	"dagger" : preload("res://sfx/sfx/knife clang.wav"),
+	"basicattack" : preload("res://sfx/sfx/staff hit.wav"),
+	"sword" : preload("res://sfx/sfx/sword.wav"),
+	"walk" : preload("res://sfx/sfx/walk (repeat while walking).wav"),
+	"warp" : preload("res://sfx/sfx/warp.wav")
 }
 
 var volume: float = 1.0
