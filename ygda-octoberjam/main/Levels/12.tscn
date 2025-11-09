@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=4 uid="uid://cq4h2wgjvx3t2"]
+[gd_scene load_steps=21 format=4 uid="uid://cq4h2wgjvx3t2"]
 
 [ext_resource type="Script" uid="uid://0yssvfp48f5r" path="res://main/Levels/12.gd" id="1_jalnf"]
 [ext_resource type="Texture2D" uid="uid://dww6b8tndbqk4" path="res://assets/Checkpoint _D.png" id="1_slnm1"]
 [ext_resource type="PackedScene" uid="uid://cjlcrnnsc4lag" path="res://player/player.tscn" id="2_jalnf"]
+[ext_resource type="Texture2D" uid="uid://dbw58a8oaqmqq" path="res://assets/Background.png" id="2_uev2n"]
 [ext_resource type="Script" uid="uid://sbp33s7p500q" path="res://main/void.gd" id="3_4poup"]
 [ext_resource type="PackedScene" uid="uid://cufo1evpompqv" path="res://intoTheDungeonPlayer.tscn" id="4_8r168"]
 [ext_resource type="Texture2D" uid="uid://c7xhn1sog3afo" path="res://assets/dungeonTileset.png" id="5_uev2n"]
@@ -97,6 +98,11 @@ size = Vector2(1021.5, 775.5)
 
 [node name="12" type="Node2D"]
 script = ExtResource("1_jalnf")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(727.25, -547.111)
+scale = Vector2(4.53375, 6.35615)
+texture = ExtResource("2_uev2n")
 
 [node name="Checkpoint" type="AnimatedSprite2D" parent="."]
 position = Vector2(97, -8)

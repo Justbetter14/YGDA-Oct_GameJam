@@ -96,7 +96,7 @@ scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_7usn7")
 
 [node name="Player" parent="." instance=ExtResource("2_qrugk")]
-position = Vector2(191, -7)
+position = Vector2(100, 180)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
