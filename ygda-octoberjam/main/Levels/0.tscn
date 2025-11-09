@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdcg3tj6vdpcl"]
+[gd_scene load_steps=5 format=3 uid="uid://cdcg3tj6vdpcl"]
 
 [ext_resource type="Script" uid="uid://6smxg1critdi" path="res://main/Levels/0.gd" id="1_b1m0w"]
-[ext_resource type="Texture2D" uid="uid://by20bwglnjhgs" path="res://assets/game_logo.png" id="2_b1m0w"]
-[ext_resource type="FontFile" uid="uid://i45n0ul8jb4g" path="res://Godot-Fontpack/cloister_black/CloisterBlack.ttf" id="3_lecmc"]
+[ext_resource type="Texture2D" uid="uid://dml26vevg6l41" path="res://assets/newTitlescreen.png" id="2_u541i"]
 [ext_resource type="PackedScene" uid="uid://cufo1evpompqv" path="res://intoTheDungeonPlayer.tscn" id="4_2bcww"]
 [ext_resource type="AudioStream" uid="uid://rf3qe0aig780" path="res://assets/title.wav" id="5_30ko2"]
 
@@ -20,7 +19,7 @@ layout_mode = 1
 offset_right = 1192.0
 offset_bottom = 620.0
 scale = Vector2(0.77, 0.75)
-texture = ExtResource("2_b1m0w")
+texture = ExtResource("2_u541i")
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 1
@@ -36,23 +35,6 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Start"
-
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -197.5
-offset_top = 78.0
-offset_right = 183.5
-offset_bottom = 184.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.564706, 0, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 1, 0, 1)
-theme_override_fonts/font = ExtResource("3_lecmc")
-theme_override_font_sizes/font_size = 90
-text = "Magicards"
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("4_2bcww")]
 stream = ExtResource("5_30ko2")
