@@ -24,5 +24,6 @@ func play_sfx(name: String):
 	
 	add_child(audio)
 	audio.stream = sfx[name]
-	connect("finished", Callable(audio, "queue_free"))
 	audio.play()
+	await audio.finished
+	audio.queue_free()

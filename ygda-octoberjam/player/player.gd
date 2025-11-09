@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 signal death
 
-var sounds: SoundEffects
-
 #region Jump & Speed Vars
 var SPEED: int = 250
 var maxSpeed: int = 250
@@ -126,7 +124,7 @@ func dmg(num: int):
 		health_Update()
 		iframe = true
 		$iFrame.start()
-		sounds.play_sfx("hit")
+		SoundEffects.play_sfx("hit")
 #endregion
 
 #region Collision & Forces Functions
@@ -166,7 +164,6 @@ func gravityCooldown(delta: float):
 func animation():
 	if not dashing:
 		if Input.is_action_pressed("Left"):
-			sounds.play_sfx("walk")
 			x_direction = -1
 			dir = 'left'
 			if(is_on_floor()):
@@ -175,14 +172,13 @@ func animation():
 				if(Input.is_action_just_pressed("Up")):
 					$Sprite2D.play("jumpLeft")
 					print('jumpAnimationTriggered')
-					sounds.play_sfx("jump")
+					SoundEffects.play_sfx("jump")
 					await $Sprite2D.animation_finished
 				elif(velocity.y <=0.0):
 					$Sprite2D.play('goingUpLeft')
 				else:	
 					$Sprite2D.play('fallLeft')
 		elif Input.is_action_pressed("Right"):
-			sounds.play_sfx("walk")
 			x_direction = 1
 			dir = 'right'
 			if(is_on_floor()):
@@ -191,7 +187,7 @@ func animation():
 				if(Input.is_action_just_pressed("Up")):
 					$Sprite2D.play("jumpRight")
 					print('jumpAnimationTriggered')
-					sounds.play_sfx("jump")
+					SoundEffects.play_sfx("jump")
 					await $Sprite2D.animation_finished
 				elif(velocity.y <=0.0):
 					$Sprite2D.play('goingUpRight')
@@ -240,7 +236,7 @@ func dash():
 			dashing = true
 			dashCD = true
 			ableDash = false
-			sounds.play_sfx("dash")
+			SoundEffects.play_sfx("dash")
 		
 	if dashing:
 		SPEED = dashSpeed
@@ -278,7 +274,7 @@ func basic():
 			print("bsaic Left")
 			leftSlash()
 		
-		sounds.play_sfx("basicattack")
+		SoundEffects.play_sfx("basicattack")
 		attacking = false
 		ableBasic = true
 
@@ -321,7 +317,7 @@ func fireBall():
 		
 		get_tree().current_scene.add_child(fire)
 		
-		sounds.play_sfx("fireball")
+		SoundEffects.play_sfx("fireball")
 		
 		attacking = false
 
@@ -371,7 +367,7 @@ func dagger():
 		get_tree().current_scene.add_child(dagPos1)
 		get_tree().current_scene.add_child(dagNeg1)
 		
-		sounds.play_sfx("dagger")
+		SoundEffects.play_sfx("dagger")
 		
 		attacking = false
 
@@ -398,7 +394,7 @@ func sword():
 			#await $Sprite2D.animation_finished
 			leftSlash()
 		
-		sounds.play_sfx("sword")
+		SoundEffects.play_sfx("sword")
 		attacking = false
 		ableSword = true
 
@@ -477,6 +473,6 @@ func _on_pick_up_radius_area_entered(area: Area2D) -> void:
 	var texture = area.get_parent().card.texture
 	if texture != null:
 		currentButton.icon = texture
-		sounds.play_sfx("cardPickup")
+		SoundEffects.play_sfx("cardPickup")
 		area.get_parent().queue_free()
 #endregion
