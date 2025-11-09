@@ -6,8 +6,6 @@ func _ready() -> void:
 	$Checkpoint.global_position = $Player.global_position + Vector2(0, -7)
 	var melee1 = basicEnemy.instantiate()
 	melee1.global_position = Vector2(-518.0, -413.0)
-	melee1.cardChance = 33
-	melee1.cardsList = []
 	add_child(melee1)
 
 func _process(delta: float) -> void:
