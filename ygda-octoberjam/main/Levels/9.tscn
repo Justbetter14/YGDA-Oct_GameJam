@@ -114,5 +114,6 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-8, -1399)
 shape = SubResource("RectangleShape2D_bqqqr")
 
+[connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="body_entered" from="Void" to="Void" method="_on_body_entered"]
 [connection signal="body_entered" from="Level9End" to="." method="_on_level_9_end_body_entered"]
