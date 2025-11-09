@@ -1,9 +1,52 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh2pdnxxd735x"]
+[gd_scene load_steps=13 format=3 uid="uid://dh2pdnxxd735x"]
 
 [ext_resource type="Script" uid="uid://b0objrvc16brb" path="res://enemy/destructEnemy/enemy_explode.gd" id="1_npic7"]
-[ext_resource type="Texture2D" uid="uid://0tfqaln2w7cl" path="res://icon.svg" id="2_l6du5"]
+[ext_resource type="Texture2D" uid="uid://cavoq2utbulgr" path="res://assets/annoying twerp.png" id="2_l6du5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_npic7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eowsw"]
+atlas = ExtResource("2_l6du5")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8yqw"]
+atlas = ExtResource("2_l6du5")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exwtk"]
+atlas = ExtResource("2_l6du5")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we8kh"]
+atlas = ExtResource("2_l6du5")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep4c2"]
+atlas = ExtResource("2_l6du5")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8e8sq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eowsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8yqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exwtk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_we8kh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ep4c2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eowsw"]
 radius = 28.0179
@@ -21,9 +64,9 @@ script = ExtResource("1_npic7")
 shape = SubResource("CircleShape2D_npic7")
 disabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_l6du5")
+sprite_frames = SubResource("SpriteFrames_8e8sq")
 
 [node name="Hit Box Area" type="Area2D" parent="."]
 

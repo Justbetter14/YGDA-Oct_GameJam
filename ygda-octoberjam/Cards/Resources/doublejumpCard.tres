@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://dpxcwyebefy0v"]
 
 [ext_resource type="Script" uid="uid://oslmdvxnn3bx" path="res://Cards/Resources/card.gd" id="1_uownw"]
-[ext_resource type="Texture2D" uid="uid://xsctwjornnnk" path="res://assets/Dagger 45 Deg Neg.png" id="2_fq8tc"]
+[ext_resource type="Texture2D" uid="uid://cuwdg83vwey7a" path="res://assets/jumping for joy yeehaw.png" id="2_uownw"]
 
 [resource]
 script = ExtResource("1_uownw")
 display_name = "doublejump"
-texture = ExtResource("2_fq8tc")
+texture = ExtResource("2_uownw")
 cardType = "movement"
 ableDash = false
 ableDoubleJump = true
