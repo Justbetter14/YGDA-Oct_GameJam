@@ -1,13 +1,39 @@
-[gd_scene load_steps=18 format=4 uid="uid://dx5e7w2bx1m4g"]
+[gd_scene load_steps=18 format=4 uid="uid://dnty8rowppotr"]
 
 [ext_resource type="Texture2D" uid="uid://dww6b8tndbqk4" path="res://assets/Checkpoint _D.png" id="1_g2gsg"]
-[ext_resource type="Script" uid="uid://c54mk271upywu" path="res://main/Levels/9.gd" id="1_qrugk"]
 [ext_resource type="PackedScene" uid="uid://cjlcrnnsc4lag" path="res://player/player.tscn" id="2_qrugk"]
 [ext_resource type="Script" uid="uid://sbp33s7p500q" path="res://main/void.gd" id="3_a6m5i"]
 [ext_resource type="PackedScene" uid="uid://cufo1evpompqv" path="res://intoTheDungeonPlayer.tscn" id="4_lx02b"]
 [ext_resource type="Texture2D" uid="uid://c7xhn1sog3afo" path="res://assets/dungeonTileset.png" id="5_ck2ra"]
 [ext_resource type="AudioStream" uid="uid://b430gprvxa6yy" path="res://assets/the tower (i want to kms).wav" id="6_a6m5i"]
 [ext_resource type="PackedScene" uid="uid://cm6oop1vqlltf" path="res://inventory/inventory.tscn" id="6_g63k8"]
+
+[sub_resource type="GDScript" id="GDScript_qrugk"]
+script/source = "extends Node2D
+
+var basicEnemy = preload(\"res://enemy/meleeBasic/enemy_melee.tscn\")
+
+func _ready() -> void:
+	$Checkpoint.global_position = $Player.global_position + Vector2(0, -7)
+	var melee1 = basicEnemy.instantiate()
+	melee1.global_position = Vector2(-518.0, -413.0)
+	melee1.cardChance = 33
+	melee1.cardsList = []
+	add_child(melee1)
+
+func _process(delta: float) -> void:
+	$Checkpoint.play(\"default\")
+
+func _on_player_death() -> void:
+	get_parent().death()
+	pass # Replace with function body.
+
+
+func _on_level_9_end_body_entered(body: Node2D) -> void:
+	if body.is_in_group(\"player\"):
+		get_parent().nextLevel()
+		queue_free()
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r5rtk"]
 atlas = ExtResource("1_g2gsg")
@@ -70,7 +96,7 @@ sources/1 = SubResource("TileSetAtlasSource_xb7ra")
 size = Vector2(1021.5, 775.5)
 
 [node name="9" type="Node2D"]
-script = ExtResource("1_qrugk")
+script = SubResource("GDScript_qrugk")
 
 [node name="Checkpoint" type="AnimatedSprite2D" parent="."]
 position = Vector2(97, -8)

@@ -1,12 +1,37 @@
-[gd_scene load_steps=17 format=4 uid="uid://bujt6roa0rqso"]
+[gd_scene load_steps=17 format=4 uid="uid://b4qfpcbijvufk"]
 
 [ext_resource type="PackedScene" uid="uid://cjlcrnnsc4lag" path="res://player/player.tscn" id="1_aoanc"]
-[ext_resource type="Script" uid="uid://echat6e5pax4" path="res://main/Levels/7.gd" id="1_y7uyo"]
 [ext_resource type="Texture2D" uid="uid://dww6b8tndbqk4" path="res://assets/Checkpoint _D.png" id="2_3eikt"]
 [ext_resource type="Script" uid="uid://sbp33s7p500q" path="res://main/void.gd" id="2_y7uyo"]
 [ext_resource type="PackedScene" uid="uid://cufo1evpompqv" path="res://intoTheDungeonPlayer.tscn" id="3_3eikt"]
 [ext_resource type="Texture2D" uid="uid://c7xhn1sog3afo" path="res://assets/dungeonTileset.png" id="4_1p32s"]
 [ext_resource type="PackedScene" uid="uid://cm6oop1vqlltf" path="res://inventory/inventory.tscn" id="5_vs4hk"]
+
+[sub_resource type="GDScript" id="GDScript_y7uyo"]
+script/source = "extends Node2D
+
+var basicEnemy = preload(\"res://enemy/meleeBasic/enemy_melee.tscn\")
+
+func _ready() -> void:
+	$Checkpoint.global_position = $Player.global_position + Vector2(0, -7)
+	var melee1 = basicEnemy.instantiate()
+	melee1.global_position = Vector2(-518.0, -413.0)
+	melee1.cardChance = 33
+	melee1.cardsList = []
+	add_child(melee1)
+
+func _process(delta: float) -> void:
+	$Checkpoint.play(\"default\")
+
+func _on_level_7_end_body_entered(body: Node2D) -> void:
+	if body.is_in_group(\"player\"):
+		get_parent().nextLevel()
+		queue_free()
+
+func _on_player_death() -> void:
+	get_parent().death()
+	pass # Replace with function body.
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r5rtk"]
 atlas = ExtResource("2_3eikt")
@@ -69,7 +94,7 @@ sources/1 = SubResource("TileSetAtlasSource_pym2s")
 size = Vector2(1021.5, 775.5)
 
 [node name="7" type="Node2D"]
-script = ExtResource("1_y7uyo")
+script = SubResource("GDScript_y7uyo")
 
 [node name="Checkpoint" type="AnimatedSprite2D" parent="."]
 position = Vector2(125, -9)
