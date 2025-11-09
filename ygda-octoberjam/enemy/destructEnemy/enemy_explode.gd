@@ -78,6 +78,7 @@ func die():
 			var knockbackDirection = (player.global_position - global_position).normalized()
 			player.applyKnockback(knockbackDirection, 600, 0.3, dmg)
 			print("Exploded After Death")
+			SoundEffects.play_sfx("enemy")
 	print("Died")
 	cardDraw(global_position)
 	if hasExploded:
@@ -114,6 +115,7 @@ func _on_explosion_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		var knockbackDirection = (player.global_position - global_position).normalized()
 		player.applyKnockback(knockbackDirection, 600, 0.3, dmg)
+		SoundEffects.play_sfx("enemy")
 		hasExploded = true
 		print("Yippee")
 		die()

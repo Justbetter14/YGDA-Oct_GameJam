@@ -57,6 +57,7 @@ func bite():
 	#player.dmg(dmg)
 	var knockbackDirection = (player.global_position - global_position).normalized()
 	player.applyKnockback(knockbackDirection, 400, 0.2, dmg)
+	SoundEffects.play_sfx("enemy")
 	$Sprite2D.play("Idle")
 
 func _on_attack_cooldown_timeout() -> void:
