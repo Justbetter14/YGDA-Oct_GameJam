@@ -17,7 +17,7 @@ var bulletScene = preload("res://enemy/projectile/bullet.tscn")
 #endregion
 
 #region Card Variables
-@export var cardChance: int = 33
+@export var cardChance: int = 50
 var cardScene = preload("res://Cards/Resources/cards.tscn")
 const daggerCard: Card = preload("res://Cards/Resources/daggerCard.tres")
 const dashCard: Card = preload("res://Cards/Resources/dashCard.tres")
@@ -63,7 +63,7 @@ func shoot():
 	var instance = bulletScene.instantiate()
 	instance.global_position = $Marker2D.global_position
 	instance.direction = (player.global_position - global_position).normalized()
-	instance.damage = dmg
+	instance.dmg = dmg
 	get_parent().add_child(instance)
 	$"Bullet Cooldown".start()
 	canShoot = false

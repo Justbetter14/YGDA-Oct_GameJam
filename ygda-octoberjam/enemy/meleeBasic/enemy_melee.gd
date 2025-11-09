@@ -4,7 +4,7 @@ extends CharacterBody2D
 var player: CharacterBody2D = null
 
 #region Card Variables
-@export var cardChance: int = 33
+@export var cardChance: int = 50
 var cardScene = preload("res://Cards/Resources/cards.tscn")
 const daggerCard: Card = preload("res://Cards/Resources/daggerCard.tres")
 const dashCard: Card = preload("res://Cards/Resources/dashCard.tres")

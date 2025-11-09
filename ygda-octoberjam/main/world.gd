@@ -9,6 +9,7 @@ func nextLevel():
 	add_child(load(temp).instantiate())
 	
 func death():
-	remove_child(get_node(str(currentLevel))) 
+	remove_child(get_node(str(currentLevel)))
+	print("void killed")
 	var temp = str("res://main/Levels/", currentLevel, ".tscn")
 	add_child(load(temp).instantiate())

@@ -49,11 +49,11 @@ animations = [{
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jti24"]
 distance = -641.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8b7sg"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dafc0"]
 texture = ExtResource("6_dafc0")
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4nsmn"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jti24"]
 texture = ExtResource("4_cadmi")
 separation = Vector2i(1, 1)
 1:0/0 = 0
@@ -67,15 +67,15 @@ separation = Vector2i(1, 1)
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, -8, -8, 8, -8, 8, -8, 8, -8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_du7lv"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8b7sg"]
 texture = ExtResource("8_jti24")
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_du7lv"]
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_4nsmn")
-sources/0 = SubResource("TileSetAtlasSource_8b7sg")
-sources/2 = SubResource("TileSetAtlasSource_du7lv")
+sources/1 = SubResource("TileSetAtlasSource_jti24")
+sources/0 = SubResource("TileSetAtlasSource_dafc0")
+sources/2 = SubResource("TileSetAtlasSource_8b7sg")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kl7vv"]
 size = Vector2(1021.5, 775.5)
@@ -125,5 +125,6 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(14, -2717)
 shape = SubResource("RectangleShape2D_kl7vv")
 
+[connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="body_entered" from="Void" to="Void" method="_on_body_entered"]
 [connection signal="body_entered" from="Level3End" to="." method="_on_level_3_end_body_entered"]
