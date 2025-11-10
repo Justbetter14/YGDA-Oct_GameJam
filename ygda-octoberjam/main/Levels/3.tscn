@@ -137,6 +137,7 @@ shape = SubResource("WorldBoundaryShape2D_jti24")
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("3_mgsqt")]
 volume_db = -24.36
+parameters/looping = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
