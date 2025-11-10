@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cjlcrnnsc4lag"]
+[gd_scene load_steps=59 format=3 uid="uid://cjlcrnnsc4lag"]
 
 [ext_resource type="Script" uid="uid://dflmp7ykxx0ki" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://7x1tmw8jjtsq" path="res://assets/player_dash_left.png" id="2_boad6"]
@@ -9,7 +9,20 @@
 [ext_resource type="Texture2D" uid="uid://cxqmn8cqtptd1" path="res://assets/player_idle (1).png" id="4_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://bgwsh27tk8jy1" path="res://assets/player_run (1).png" id="6_8t03j"]
 [ext_resource type="Texture2D" uid="uid://husar8k2uhut" path="res://assets/jump and fall (1).png" id="7_2ieo8"]
+[ext_resource type="Texture2D" uid="uid://bp1cuprqtfc7h" path="res://assets/sword 2.png" id="9_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://d0fv8tu1jt0v3" path="res://assets/SwordSwing.png" id="10_8t03j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gswnw"]
+atlas = ExtResource("9_2ieo8")
+region = Rect2(0, 0, 42, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcnuv"]
+atlas = ExtResource("9_2ieo8")
+region = Rect2(0, 28, 42, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j55il"]
+atlas = ExtResource("9_2ieo8")
+region = Rect2(0, 56, 42, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebec5"]
 atlas = ExtResource("2_boad6")
@@ -173,6 +186,20 @@ region = Rect2(0, 0, 44, 42)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ebec5"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gswnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcnuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j55il")
+}],
+"loop": false,
+"name": &"basic",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ebec5")

@@ -269,10 +269,16 @@ func basic():
 		print("Attack /w basic")
 		if dir == 'right':
 			print("Bsaic Right")
+			$Sprite2D.play("basic")
 			rightSlash()
+			await $Sprite2D.animation_finished
 		elif dir == 'left':
 			print("bsaic Left")
+			$Sprite2D.flip_h = true
+			$Sprite2D.play("basic")
 			leftSlash()
+			await $Sprite2D.animation_finished
+			$Sprite2D.flip_h = false
 		
 		SoundEffects.play_sfx("basicattack")
 		attacking = false
@@ -385,14 +391,24 @@ func sword():
 		
 		if dir == 'right':
 			print("Sowrdd Right")
-			#$Sprite2D.play("swordSlash")
-			#await $Sprite2D.animation_finished
+			$Sprite2D.scale.x = 0.641
+			$Sprite2D.scale.y = 1
+			$Sprite2D.play("swordSlash")
 			rightSlash()
+			await $Sprite2D.animation_finished
+			$Sprite2D.scale.x = 1.0
+			$Sprite2D.scale.y = 1.56
 		elif dir == 'left':
 			print("Sowrdd Left")
-			#$Sprite2D.play("swordSlash")
-			#await $Sprite2D.animation_finished
+			$Sprite2D.flip_h = true
+			$Sprite2D.scale.x = 0.75
+			$Sprite2D.scale.y = 1.17
+			$Sprite2D.play("swordSlash")
 			leftSlash()
+			await $Sprite2D.animation_finished
+			$Sprite2D.flip_h = false
+			$Sprite2D.scale.x = 1.0
+			$Sprite2D.scale.y = 1.56
 		
 		SoundEffects.play_sfx("sword")
 		attacking = false
