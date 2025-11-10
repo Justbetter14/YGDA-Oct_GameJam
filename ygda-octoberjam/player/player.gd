@@ -222,10 +222,14 @@ func wallJump():
 				print("wall jumped right")
 				velocity.y = JUMP_POW
 				velocity.x = -200
+				$Sprite2D.play("wall climb")
 			if Input.is_action_pressed("Left"):
 				print("wall jumped left")
 				velocity.y = JUMP_POW
 				velocity.x = 200
+				$Sprite2D.flip_h = true
+				$Sprite2D.play("wall climb")
+				$Sprite2D.flip_h = false
 
 func dash():
 	if Input.is_action_pressed("Dash"):
