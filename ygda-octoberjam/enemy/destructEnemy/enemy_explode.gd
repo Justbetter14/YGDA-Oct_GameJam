@@ -23,7 +23,7 @@ var shouldMove: bool = true
 #endregion
 
 #region Damage Variables
-@export var dmg: int = 25
+@export var dmg: int = 40
 var hasExploded: bool = false
 #endregion
 

@@ -2,7 +2,7 @@ extends AnimatedSprite2D
 
 var speed: int = 200
 var direction: Vector2 = Vector2.ZERO
-var dmg: int = 10
+var dmg: int = 20
 var player: CharacterBody2D = null
 
 # Called when the node enters the scene tree for the first time.

@@ -86,7 +86,7 @@ animations = [{
 distance = -641.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_330ye"]
-size = Vector2(1021.5, 775.5)
+size = Vector2(1021.5, 732.75)
 
 [node name="5" type="Node2D"]
 script = ExtResource("1_moo60")
@@ -131,7 +131,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Level5End" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level5End"]
-position = Vector2(-8, -1399)
+position = Vector2(-8, -1420.38)
 shape = SubResource("RectangleShape2D_330ye")
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]
