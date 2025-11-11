@@ -1,6 +1,6 @@
 extends Node
 
-var currentLevel = 0
+var currentLevel = 9
 
 func nextLevel():
 	remove_child(get_node(str(currentLevel))) 

@@ -95,8 +95,8 @@ animations = [{
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uiudg"]
 distance = -641.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0r08"]
-size = Vector2(1021.5, 775.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_okfyh"]
+size = Vector2(1019, 374)
 
 [node name="2" type="Node2D"]
 script = ExtResource("1_d0r08")
@@ -141,8 +141,8 @@ metadata/_edit_use_anchors_ = true
 [node name="Level2End" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level2End"]
-position = Vector2(-8, -1399)
-shape = SubResource("RectangleShape2D_d0r08")
+position = Vector2(0.5, -1220)
+shape = SubResource("RectangleShape2D_okfyh")
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="body_entered" from="Void" to="Void" method="_on_body_entered"]

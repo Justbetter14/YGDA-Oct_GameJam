@@ -67,7 +67,7 @@ const daggerNeg := preload("res://player/dagger/daggerNeg.tscn")
 # Sword
 var canSword: bool = false
 var ableSword: bool = true
-@export var Strength: int = 100
+@export var Strength: int = 50
 #endregion
 
 #region Collision Variables

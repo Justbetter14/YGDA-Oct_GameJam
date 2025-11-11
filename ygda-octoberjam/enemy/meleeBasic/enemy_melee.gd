@@ -17,13 +17,13 @@ var cardGiven: bool = false
 #endregion
 
 #region Movement Variables
-const SPEED: int = 35
+const SPEED: int = 45
 var x_direction: int = 1
 var shouldMove: bool = true
 #endregion
 
 #region Damage Variables
-@export var dmg: int = 10
+@export var dmg: int = 30
 var canBite: bool = true
 #endregion
 
